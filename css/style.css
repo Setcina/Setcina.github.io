@@ -525,9 +525,16 @@ h2.article-head {
   min-height: 13px;
   margin: 2px 0;
 }
+.markdown-content .myimage,
+.article-summary .myimage {
+  max-width: 600px;
+  height: auto;
+  float: left;
+}
 .markdown-content p,
 .article-summary p {
   line-height: 1.6em;
+  overflow: hidden;
 }
 .markdown-content p code,
 .article-summary p code {

@@ -10,7 +10,7 @@
   
   <title>
     
-      01-React全局搭建脚手架 | Setcina（目前还在更新以及完善中...）
+      04-React-state状态的使用 | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>01-React全局搭建脚手架</h2>
-  <p class="post-date">2018-08-22</p>
+  <h2>04-React-state状态的使用</h2>
+  <p class="post-date">2018-09-13</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,10 +123,10 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h2 id="1-全局安装"><a href="#1-全局安装" class="headerlink" title="1.全局安装"></a>1.全局安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure>
-<h2 id="2-添加一个名为my-app的react的项目"><a href="#2-添加一个名为my-app的react的项目" class="headerlink" title="2.添加一个名为my-app的react的项目"></a>2.添加一个名为my-app的react的项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app my-app</span><br></pre></td></tr></table></figure>
-<h2 id="3-打开my-app"><a href="#3-打开my-app" class="headerlink" title="3.打开my-app"></a>3.打开my-app</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> my-app</span><br></pre></td></tr></table></figure>
-<h2 id="4-运行"><a href="#4-运行" class="headerlink" title="4.运行"></a>4.运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+    <section class="markdown-content"><p>首先我们要明白state和props之间很相似，容易混淆。<br>属性更多的是用来组件之间的通信<br>state并不是用来传值的，而是改变一个值的状态</p>
+<h3 id="首先定义state"><a href="#首先定义state" class="headerlink" title="首先定义state"></a>首先定义state</h3><p><img class="myimage" src="/2018/09/13/04-React-state状态的使用/image01.png"></p>
+<h3 id="如何在取值，使用-this-state-Users-0-name-可以取到值"><a href="#如何在取值，使用-this-state-Users-0-name-可以取到值" class="headerlink" title="如何在取值，使用{this.state.Users[0].name}可以取到值"></a>如何在取值，使用{this.state.Users[0].name}可以取到值</h3><p><img class="myimage" src="/2018/09/13/04-React-state状态的使用/image02.png"></p>
+<h3 id="如果要更改state里面的值，我们可以调用一个方法，并且使用this-setState修改里面的值"><a href="#如果要更改state里面的值，我们可以调用一个方法，并且使用this-setState修改里面的值" class="headerlink" title="如果要更改state里面的值，我们可以调用一个方法，并且使用this.setState修改里面的值"></a>如果要更改state里面的值，我们可以调用一个方法，并且使用this.setState修改里面的值</h3><p><img class="myimage" src="/2018/09/13/04-React-state状态的使用/image03.png"></p>
 </section>
     <!-- Tags START -->
     
@@ -145,20 +145,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/31/01-Git常用命令/">
+      <a class="nav-left" href="/2018/09/13/03-React组件通信/">
         <span class="nav-arrow">← </span>
         
-          01-Git常用命令
+          03-React组件通信
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/08/22/02-React文件结构和JSX语法/">
-        
-          02-React文件结构和JSX语法
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -204,7 +197,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-全局安装"><span class="toc-nav-text">1.全局安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-添加一个名为my-app的react的项目"><span class="toc-nav-text">2.添加一个名为my-app的react的项目</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-打开my-app"><span class="toc-nav-text">3.打开my-app</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-运行"><span class="toc-nav-text">4.运行</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#首先定义state"><span class="toc-nav-text">首先定义state</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何在取值，使用-this-state-Users-0-name-可以取到值"><span class="toc-nav-text">如何在取值，使用{this.state.Users[0].name}可以取到值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如果要更改state里面的值，我们可以调用一个方法，并且使用this-setState修改里面的值"><span class="toc-nav-text">如果要更改state里面的值，我们可以调用一个方法，并且使用this.setState修改里面的值</span></a></li></ol>
     
   </div>
 </aside>
@@ -214,7 +207,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/08/22/01-React/';
+    var url = 'http://yoursite.com/2018/09/13/04-React-state状态的使用/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +263,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "01-React全局搭建脚手架",
+        id: "04-React-state状态的使用",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
