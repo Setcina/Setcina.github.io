@@ -10,7 +10,7 @@
   
   <title>
     
-      04-React-state状态的使用 | Setcina（目前还在更新以及完善中...）
+      05-React-属性传值（传事件） | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,7 +114,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>04-React-state状态的使用</h2>
+  <h2>05-React-属性传值（传事件）</h2>
   <p class="post-date">2018-09-13</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -123,10 +123,9 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>首先我们要明白state和props之间很相似，容易混淆。<br>属性更多的是用来组件之间的通信<br>state并不是用来传值的，而是改变一个值的状态</p>
-<h3 id="首先定义state"><a href="#首先定义state" class="headerlink" title="首先定义state"></a>首先定义state</h3><p><img class="myimage" src="/2018/09/13/04-React-state状态的使用/image01.png"></p>
-<h3 id="如何在取值，使用-this-state-Users-0-name-可以取到值"><a href="#如何在取值，使用-this-state-Users-0-name-可以取到值" class="headerlink" title="如何在取值，使用{this.state.Users[0].name}可以取到值"></a>如何在取值，使用{this.state.Users[0].name}可以取到值</h3><p><img class="myimage" src="/2018/09/13/04-React-state状态的使用/image02.png"></p>
-<h3 id="如果要更改state里面的值，我们可以调用一个方法，并且使用this-setState修改里面的值"><a href="#如果要更改state里面的值，我们可以调用一个方法，并且使用this-setState修改里面的值" class="headerlink" title="如果要更改state里面的值，我们可以调用一个方法，并且使用this.setState修改里面的值"></a>如果要更改state里面的值，我们可以调用一个方法，并且使用this.setState修改里面的值</h3><p><img class="myimage" src="/2018/09/13/04-React-state状态的使用/image03.png"></p>
+    <section class="markdown-content"><h3 id="如何将事件带的参数带回给事件本身，这里面需要用到bind这个属性，如下图所示"><a href="#如何将事件带的参数带回给事件本身，这里面需要用到bind这个属性，如下图所示" class="headerlink" title="如何将事件带的参数带回给事件本身，这里面需要用到bind这个属性，如下图所示"></a>如何将事件带的参数带回给事件本身，这里面需要用到bind这个属性，如下图所示</h3><p><img class="myimage" src="/2018/09/13/05-React-属性传值（传事件）/image01.png"></p>
+<p>{ this.switchName.bind(this,”你好”)}</p>
+<h3 id="在方法中接受定义一个形参myName接受这个“你好”的参数-如何在组件中使用属性传值，则需要定义一个属性，并且要定义好事件类型。并且在父组件中直接调用。如下图及上图"><a href="#在方法中接受定义一个形参myName接受这个“你好”的参数-如何在组件中使用属性传值，则需要定义一个属性，并且要定义好事件类型。并且在父组件中直接调用。如下图及上图" class="headerlink" title="在方法中接受定义一个形参myName接受这个“你好”的参数,如何在组件中使用属性传值，则需要定义一个属性，并且要定义好事件类型。并且在父组件中直接调用。如下图及上图"></a>在方法中接受定义一个形参myName接受这个“你好”的参数,如何在组件中使用属性传值，则需要定义一个属性，并且要定义好事件类型。并且在父组件中直接调用。如下图及上图</h3><p><img class="myimage" src="/2018/09/13/05-React-属性传值（传事件）/image02.png"></p>
 </section>
     <!-- Tags START -->
     
@@ -145,20 +144,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/09/13/03-React组件通信/">
+      <a class="nav-left" href="/2018/09/13/04-React-state状态的使用/">
         <span class="nav-arrow">← </span>
         
-          03-React组件通信
+          04-React-state状态的使用
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/09/13/05-React-属性传值（传事件）/">
-        
-          05-React-属性传值（传事件）
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -204,7 +196,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#首先定义state"><span class="toc-nav-text">首先定义state</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何在取值，使用-this-state-Users-0-name-可以取到值"><span class="toc-nav-text">如何在取值，使用{this.state.Users[0].name}可以取到值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如果要更改state里面的值，我们可以调用一个方法，并且使用this-setState修改里面的值"><span class="toc-nav-text">如果要更改state里面的值，我们可以调用一个方法，并且使用this.setState修改里面的值</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何将事件带的参数带回给事件本身，这里面需要用到bind这个属性，如下图所示"><span class="toc-nav-text">如何将事件带的参数带回给事件本身，这里面需要用到bind这个属性，如下图所示</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在方法中接受定义一个形参myName接受这个“你好”的参数-如何在组件中使用属性传值，则需要定义一个属性，并且要定义好事件类型。并且在父组件中直接调用。如下图及上图"><span class="toc-nav-text">在方法中接受定义一个形参myName接受这个“你好”的参数,如何在组件中使用属性传值，则需要定义一个属性，并且要定义好事件类型。并且在父组件中直接调用。如下图及上图</span></a></li></ol>
     
   </div>
 </aside>
@@ -214,7 +206,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/09/13/04-React-state状态的使用/';
+    var url = 'http://yoursite.com/2018/09/13/05-React-属性传值（传事件）/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +262,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "04-React-state状态的使用",
+        id: "05-React-属性传值（传事件）",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {

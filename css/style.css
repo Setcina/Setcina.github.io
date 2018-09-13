@@ -527,6 +527,7 @@ h2.article-head {
 }
 .markdown-content .myimage,
 .article-summary .myimage {
+  width: 100%;
   max-width: 600px;
   height: auto;
   float: left;
