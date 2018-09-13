@@ -10,7 +10,7 @@
   
   <title>
     
-      13-vuex中的mutations如何使用 | Setcina（目前还在更新以及完善中...）
+      02-React文件结构和JSX语法 | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>13-vuex中的mutations如何使用</h2>
-  <p class="post-date">2018-07-30</p>
+  <h2>02-React文件结构和JSX语法</h2>
+  <p class="post-date">2018-08-22</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,18 +123,18 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。<br>Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数：</p>
-<h3 id="1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><a href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似" class="headerlink" title="1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"></a>1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</h3><p>在store.js中编写方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mutations:&#123; </span><br><span class="line">  reducePrice(state,payload)&#123; </span><br><span class="line">    state.produce.forEach(<span class="function"><span class="params">reduce</span>=&gt;</span>&#123; </span><br><span class="line">      reduce.price-=payload;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.在组件当中使用mutations</p>
-<p>this.$store.commit(‘reducePrice’)</p>
+    <section class="markdown-content"><p>题外话：为什么在同一文件目录还需要 ‘./ ‘ 这样的方式选择文件，原因是因为在React.js以及Vue.js当中，引入一个Vue或者React，只需要import Vue/React from ‘vue/react’。如果引用自己编写的模块（components）不加上’ ./ ‘，Vue或者React会以为应用的是固有的自己架构中的模块~</p>
+<h3 id="1-JSX语法，首先必须"><a href="#1-JSX语法，首先必须" class="headerlink" title="1.JSX语法，首先必须"></a>1.JSX语法，首先必须</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line">引入react的模板</span><br></pre></td></tr></table></figure>
+<h3 id="2-按需引入所需要的css或者JSX模板"><a href="#2-按需引入所需要的css或者JSX模板" class="headerlink" title="2.按需引入所需要的css或者JSX模板"></a>2.按需引入所需要的css或者JSX模板</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span>;  映入css</span><br><span class="line"><span class="keyword">import</span> User <span class="keyword">from</span> <span class="string">'./components/User'</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-结构语法"><a href="#3-结构语法" class="headerlink" title="3.结构语法"></a>3.结构语法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;	</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      date: <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;	</span><br><span class="line">    <span class="keyword">return</span>(	</span><br><span class="line">      &lt;div className = <span class="string">"App-header"</span>&gt;你好&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#React.js" >
+    <span class="tag-code">React.js</span>
   </a>
 
       </div>
@@ -145,17 +145,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/26/12-如何高效使用vuex来获取数据/">
+      <a class="nav-left" href="/2018/08/22/01-React/">
         <span class="nav-arrow">← </span>
         
-          12-如何高效使用vuex来获取数据
+          01-React全局搭建脚手架
         
       </a>
     
     
-      <a class="nav-right" href="/2018/07/31/01-Git常用命令/">
+      <a class="nav-right" href="/2018/09/13/03-React组件通信/">
         
-          01-Git常用命令
+          03-React组件通信
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -204,7 +204,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><span class="toc-nav-text">1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-JSX语法，首先必须"><span class="toc-nav-text">1.JSX语法，首先必须</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-按需引入所需要的css或者JSX模板"><span class="toc-nav-text">2.按需引入所需要的css或者JSX模板</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-结构语法"><span class="toc-nav-text">3.结构语法</span></a></li></ol>
     
   </div>
 </aside>
@@ -214,7 +214,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/30/13-vuex中的mutations如何使用/';
+    var url = 'http://yoursite.com/2018/08/22/02-React/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +270,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "13-vuex中的mutations如何使用",
+        id: "02-React文件结构和JSX语法",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {

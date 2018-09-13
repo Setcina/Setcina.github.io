@@ -10,7 +10,7 @@
   
   <title>
     
-      13-vuex中的mutations如何使用 | Setcina（目前还在更新以及完善中...）
+      01-React全局搭建脚手架 | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>13-vuex中的mutations如何使用</h2>
-  <p class="post-date">2018-07-30</p>
+  <h2>01-React全局搭建脚手架</h2>
+  <p class="post-date">2018-08-22</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,18 +123,18 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。<br>Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数：</p>
-<h3 id="1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><a href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似" class="headerlink" title="1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"></a>1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</h3><p>在store.js中编写方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mutations:&#123; </span><br><span class="line">  reducePrice(state,payload)&#123; </span><br><span class="line">    state.produce.forEach(<span class="function"><span class="params">reduce</span>=&gt;</span>&#123; </span><br><span class="line">      reduce.price-=payload;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.在组件当中使用mutations</p>
-<p>this.$store.commit(‘reducePrice’)</p>
+    <section class="markdown-content"><h2 id="1-全局安装"><a href="#1-全局安装" class="headerlink" title="1.全局安装"></a>1.全局安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure>
+<h2 id="2-添加一个名为my-app的react的项目"><a href="#2-添加一个名为my-app的react的项目" class="headerlink" title="2.添加一个名为my-app的react的项目"></a>2.添加一个名为my-app的react的项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app my-app</span><br></pre></td></tr></table></figure>
+<h2 id="3-打开my-app"><a href="#3-打开my-app" class="headerlink" title="3.打开my-app"></a>3.打开my-app</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> my-app</span><br></pre></td></tr></table></figure>
+<h2 id="4-运行"><a href="#4-运行" class="headerlink" title="4.运行"></a>4.运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#React.js" >
+    <span class="tag-code">React.js</span>
   </a>
 
       </div>
@@ -145,17 +145,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/26/12-如何高效使用vuex来获取数据/">
+      <a class="nav-left" href="/2018/07/31/01-Git常用命令/">
         <span class="nav-arrow">← </span>
         
-          12-如何高效使用vuex来获取数据
+          01-Git常用命令
         
       </a>
     
     
-      <a class="nav-right" href="/2018/07/31/01-Git常用命令/">
+      <a class="nav-right" href="/2018/08/22/02-React/">
         
-          01-Git常用命令
+          02-React文件结构和JSX语法
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -204,7 +204,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><span class="toc-nav-text">1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-全局安装"><span class="toc-nav-text">1.全局安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-添加一个名为my-app的react的项目"><span class="toc-nav-text">2.添加一个名为my-app的react的项目</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-打开my-app"><span class="toc-nav-text">3.打开my-app</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-运行"><span class="toc-nav-text">4.运行</span></a></li></ol>
     
   </div>
 </aside>
@@ -214,7 +214,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/30/13-vuex中的mutations如何使用/';
+    var url = 'http://yoursite.com/2018/08/22/01-React/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +270,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "13-vuex中的mutations如何使用",
+        id: "01-React全局搭建脚手架",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
