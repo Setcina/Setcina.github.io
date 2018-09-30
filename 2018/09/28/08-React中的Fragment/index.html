@@ -10,7 +10,7 @@
   
   <title>
     
-      12-如何高效使用vuex来获取数据 | Setcina（目前还在更新以及完善中...）
+      08-React中的Fragment | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>12-如何高效使用vuex来获取数据</h2>
-  <p class="post-date">2018-07-26</p>
+  <h2>08-React中的Fragment</h2>
+  <p class="post-date">2018-09-28</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,19 +123,23 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据"><a href="#我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据" class="headerlink" title="我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据"></a>我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据</h3><p>在store.js中，构建好组件所需要的数据，然后，通过getters这个属性，去构造方法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import Vue from <span class="string">'vue'</span></span><br><span class="line">import Vuex from <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="built_in">export</span> const store = new Vuex.Store(&#123;	</span><br><span class="line">  state:&#123; </span><br><span class="line">    produce:[ </span><br><span class="line">      &#123;name:<span class="string">'汉堡'</span>,price:<span class="string">'10'</span>&#125;,</span><br><span class="line">      &#123;name:<span class="string">'薯条'</span>,price:<span class="string">'4'</span>&#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  getters:&#123; </span><br><span class="line">    originState(state)&#123; </span><br><span class="line">      <span class="built_in">return</span> state.produce</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>在这里，我们构造了一个方法originState，那么，我们也应该如何使用</p>
-<h3 id="在组件中，我们需要调用到计算属性，用来给组件以及store-js构建一个通道（computed）"><a href="#在组件中，我们需要调用到计算属性，用来给组件以及store-js构建一个通道（computed）" class="headerlink" title="在组件中，我们需要调用到计算属性，用来给组件以及store.js构建一个通道（computed）"></a>在组件中，我们需要调用到计算属性，用来给组件以及store.js构建一个通道（computed）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123; </span><br><span class="line">  name :<span class="string">'one'</span>,</span><br><span class="line">  computed:&#123;  </span><br><span class="line">    price()&#123;  </span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.originPrice</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意写法 this.$store.getters.originPrice</p>
-<p>最后，在组件中使用数据<br></p>
+    <section class="markdown-content"><h3 id="Fragments的作用"><a href="#Fragments的作用" class="headerlink" title="Fragments的作用"></a>Fragments的作用</h3><p>React 中一个常见模式是为一个组件返回多个元素。Fragments 可以让你聚合一个子元素列表，并且不在DOM中增加额外节点。</p>
+<p>使用如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;                      </span><br><span class="line">  <span class="keyword">return</span> (                      </span><br><span class="line">    &lt;&gt;                          </span><br><span class="line">      &lt;ChildA /&gt;                </span><br><span class="line">      &lt;ChildB /&gt;                </span><br><span class="line">      &lt;ChildC /&gt;                </span><br><span class="line">    &lt;<span class="regexp">/&gt;                         </span></span><br><span class="line"><span class="regexp">  );                            </span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>Fragments 看起来像空的 JSX 标签，但是我们在一个组件中返回子元素列表的时候，为了有效的渲染，会有一个父级的容器存在，那么我们经常会这样写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Columns</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">        &lt;td&gt;World&lt;/</span>td&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这种时候，输出的table里面，会存在div这个容器，这显然是有问题的。</p>
+<p>为了在一个table里面正确的输出子元素，这个时候就要借助Fragment，使用如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Columns</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">        &lt;td&gt;World&lt;/</span>td&gt;</span><br><span class="line">      &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>但是，这样的使用，会存在一个问题是，这样的语法没办法接受键值和属性。<br>如果，我们需要一个带key的片段，那么可以用这样使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Columns</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;React.Fragment key=&#123;item.id&#125;&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">        &lt;td&gt;World&lt;/</span>td&gt;</span><br><span class="line">      &lt;<span class="regexp">/React.Fragment&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这样子，我们就可以在模板中引用了<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tables</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;table&gt;</span><br><span class="line">        &lt;Columns/&gt;</span><br><span class="line">      &lt;<span class="regexp">/table&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#React.js" >
+    <span class="tag-code">React.js</span>
   </a>
 
       </div>
@@ -146,20 +150,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">
+      <a class="nav-left" href="/2018/09/27/07-React-bind/">
         <span class="nav-arrow">← </span>
         
-          02-Vue.js 构造VUEX的中央管理器
+          07-React.bind()
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/07/30/13-vuex中的mutations如何使用/">
-        
-          13-vuex中的mutations如何使用
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -205,7 +202,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据"><span class="toc-nav-text">我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在组件中，我们需要调用到计算属性，用来给组件以及store-js构建一个通道（computed）"><span class="toc-nav-text">在组件中，我们需要调用到计算属性，用来给组件以及store.js构建一个通道（computed）</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Fragments的作用"><span class="toc-nav-text">Fragments的作用</span></a></li></ol>
     
   </div>
 </aside>
@@ -215,7 +212,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/26/12-如何高效使用vuex来获取数据/';
+    var url = 'http://yoursite.com/2018/09/28/08-React中的Fragment/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -271,7 +268,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "12-如何高效使用vuex来获取数据",
+        id: "08-React中的Fragment",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {

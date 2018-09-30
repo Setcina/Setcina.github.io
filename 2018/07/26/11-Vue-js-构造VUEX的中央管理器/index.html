@@ -10,7 +10,7 @@
   
   <title>
     
-      11-Vue.js 构造VUEX的中央管理器 | Setcina（目前还在更新以及完善中...）
+      02-Vue.js 构造VUEX的中央管理器 | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,7 +114,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>11-Vue.js 构造VUEX的中央管理器</h2>
+  <h2>02-Vue.js 构造VUEX的中央管理器</h2>
   <p class="post-date">2018-07-26</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -124,31 +124,21 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuex --save-dev</span><br></pre></td></tr></table></figure>
-<h3 id="在文件目录下建立store文件夹，并且建立store-js，如下图所示："><a href="#在文件目录下建立store文件夹，并且建立store-js，如下图所示：" class="headerlink" title="在文件目录下建立store文件夹，并且建立store.js，如下图所示："></a>在文件目录下建立store文件夹，并且建立store.js，如下图所示：</h3><p>与static同级目录下建立的</p>
-<h3 id="在store-js中使用"><a href="#在store-js中使用" class="headerlink" title="在store.js中使用"></a>在store.js中使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure>
+<h3 id="在文件目录下建立store文件夹，并且建立store-js"><a href="#在文件目录下建立store文件夹，并且建立store-js" class="headerlink" title="在文件目录下建立store文件夹，并且建立store.js"></a>在文件目录下建立store文件夹，并且建立store.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文件建立</span><br><span class="line">src/store/store.js</span><br></pre></td></tr></table></figure>
+<h3 id="构造单一状态树"><a href="#构造单一状态树" class="headerlink" title="构造单一状态树"></a>构造单一状态树</h3><p>Vuex 使用单一状态树——是的，用一个对象就包含了全部的应用层级状态。至此它便作为一个“唯一数据源 (SSOT)”而存在。这也意味着，每个应用将仅仅包含一个 store 实例。单一状态树让我们能够直接地定位任一特定的状态片段，在调试的过程中也能轻易地取得整个当前应用状态的快照。</p>
 <h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Vue from <span class="string">'vue'</span></span><br><span class="line">import Vuex from <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="built_in">export</span> const store = new Vuex.Store(&#123;	</span><br><span class="line">  state:&#123; </span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="在main-js中使用"><a href="#在main-js中使用" class="headerlink" title="在main.js中使用"></a>在main.js中使用</h3><pre><code class="js"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>
-<span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.js'</span>
-<span class="keyword">import</span> {store} <span class="keyword">from</span> <span class="string">'./store/store'</span>
-
-Vue.config.productionTop = <span class="literal">false</span>;
-
-<span class="keyword">new</span> Vue({ 
-  store,
-  el:<span class="string">'#App'</span>,
-  router,
-  compontents:{App}
-  ....
-})
-</code></pre>
-</section>
+<h3 id="在main-js中使用"><a href="#在main-js中使用" class="headerlink" title="在main.js中使用"></a>在main.js中使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123;store&#125; <span class="keyword">from</span> <span class="string">'./store/store'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTop = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123; </span><br><span class="line">  store,</span><br><span class="line">  el:<span class="string">'#App'</span>,</span><br><span class="line">  router,</span><br><span class="line">  compontents:&#123;App&#125;</span><br><span class="line">  ....</span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### 在 Vue 组件中获得 Vuex 状态</span></span><br><span class="line"><span class="string">那么我们如何在 Vue 组件中展示状态呢？由于 Vuex 的状态存储是响应式的，从 store 实例中读取状态最简单的方法就是在计算属性中返回某个状态：</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> js</span><br><span class="line"><span class="comment">// 创建一个 Counter 组件</span></span><br><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">  template: <span class="string">`&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;`</span>,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      <span class="keyword">return</span> store.state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每当 store.state.count 变化的时候, 都会重新求取计算属性，并且触发更新相关联的 DOM。</p>
+<p>然而，这种模式导致组件依赖全局状态单例。在模块化的构建系统中，在每个需要使用 state 的组件中需要频繁地导入，并且在测试组件时需要模拟状态。</p>
+<p>Vuex 通过 store 选项，提供了一种机制将状态从根组件“注入”到每一个子组件中（需调用 Vue.use(Vuex)）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  <span class="comment">// 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件</span></span><br><span class="line">  store,</span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="app"&gt;</span></span><br><span class="line"><span class="string">      &lt;counter&gt;&lt;/counter&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">通过在根实例中注册 store 选项，该 store 实例会注入到根组件下的所有子组件中，且子组件能通过 this.$store 访问到。让我们更新下 Counter 的实现：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> js</span><br><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">  template: <span class="string">`&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;`</span>,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$store.state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#Vuex" >
+    <span class="tag-code">Vuex</span>
   </a>
 
       </div>
@@ -162,7 +152,7 @@ Vue.config.productionTop = <span class="literal">false</span>;
       <a class="nav-left" href="/2018/07/25/10-什么是vuex/">
         <span class="nav-arrow">← </span>
         
-          10-什么是vuex
+          01-什么是vuex
         
       </a>
     
@@ -218,7 +208,7 @@ Vue.config.productionTop = <span class="literal">false</span>;
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装依赖"><span class="toc-nav-text">安装依赖</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在文件目录下建立store文件夹，并且建立store-js，如下图所示："><span class="toc-nav-text">在文件目录下建立store文件夹，并且建立store.js，如下图所示：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在store-js中使用"><span class="toc-nav-text">在store.js中使用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何使用"><span class="toc-nav-text">如何使用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在main-js中使用"><span class="toc-nav-text">在main.js中使用</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装依赖"><span class="toc-nav-text">安装依赖</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在文件目录下建立store文件夹，并且建立store-js"><span class="toc-nav-text">在文件目录下建立store文件夹，并且建立store.js</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#构造单一状态树"><span class="toc-nav-text">构造单一状态树</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何使用"><span class="toc-nav-text">如何使用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在main-js中使用"><span class="toc-nav-text">在main.js中使用</span></a></li></ol>
     
   </div>
 </aside>
@@ -284,7 +274,7 @@ Vue.config.productionTop = <span class="literal">false</span>;
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "11-Vue.js 构造VUEX的中央管理器",
+        id: "02-Vue.js 构造VUEX的中央管理器",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {

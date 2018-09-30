@@ -117,7 +117,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">11-Vue.js 构造VUEX的中央管理器</a>
+        <a href="/2018/07/26/12-如何高效使用vuex来获取数据/">12-如何高效使用vuex来获取数据</a>
       </h2>
       <p class="article-date">July 26, 2018</p>
       
@@ -129,9 +129,29 @@
       
       <div class="article-summary">
         
+          我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据在store.js中，构建好组件所需要的数据，然后，通过getters这个属性，去构造方法。1234567891011121314151617import Vue from 'vue'import Vuex from 'v ...
+        
+      </div>
+      <a class="more" href="/2018/07/26/12-如何高效使用vuex来获取数据/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">02-Vue.js 构造VUEX的中央管理器</a>
+      </h2>
+      <p class="article-date">July 26, 2018</p>
+      
+        
+  <a href="/tags#Vuex" >
+    <span class="tag-code">Vuex</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
           安装依赖1npm install vuex --save-dev
-在文件目录下建立store文件夹，并且建立store.js，如下图所示：与static同级目录下建立的
-在store.js中使用1234import Vue from 'vue'import Vuex from 'vuex'V ...
+在文件目录下建立store文件夹，并且建立store.js12文件建立src/store/store.js
+构造单一状态树Vuex 使用单一状态树——是的，用一个对象就包含了全部的应用层级状态。至此它便作为一个“唯一数据源 ( ...
         
       </div>
       <a class="more" href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">Read more</a>
@@ -139,20 +159,20 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/07/25/10-什么是vuex/">10-什么是vuex</a>
+        <a href="/2018/07/25/10-什么是vuex/">01-什么是vuex</a>
       </h2>
       <p class="article-date">July 25, 2018</p>
       
         
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#Vuex" >
+    <span class="tag-code">Vuex</span>
   </a>
 
       
       <div class="article-summary">
         
           Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
-但是，当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：  ● 多个视图依赖于同一状态。  ● 来自不同视图的行为需 ...
+什么是”状态管理器”1234567891011121314151617181920212223new Vue(&#123;  // s ...
         
       </div>
       <a class="more" href="/2018/07/25/10-什么是vuex/">Read more</a>
@@ -297,27 +317,6 @@
         
       </div>
       <a class="more" href="/2018/07/22/03-如何使用Vue-js引用jquery/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/07/22/02-如何在Vue-js使用css/">02-如何在Vue.js使用css</a>
-      </h2>
-      <p class="article-date">July 22, 2018</p>
-      
-        
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          关于css部分在vue-cli中使用sass、less来编写css样式，步骤十分简洁，因为vue-cli已经配置好了sass、less，我们要使用sass或者less直接下载两个模块，然后webpack会根据 lang 属性自动用适当的加载器去处理。以下我们来了解一下各css应该如何使用
-c ...
-        
-      </div>
-      <a class="more" href="/2018/07/22/02-如何在Vue-js使用css/">Read more</a>
     </article>
   
 

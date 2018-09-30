@@ -10,7 +10,7 @@
   
   <title>
     
-      10-什么是vuex | Setcina（目前还在更新以及完善中...）
+      01-什么是vuex | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,7 +114,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>10-什么是vuex</h2>
+  <h2>01-什么是vuex</h2>
   <p class="post-date">2018-07-25</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -124,19 +124,21 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
-<p>但是，当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：<br>  ● 多个视图依赖于同一状态。<br>  ● 来自不同视图的行为需要变更同一状态。</p>
-<p>对于问题一，传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力。对于问题二，我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝。以上的这些模式非常脆弱，通常会导致无法维护的代码。</p>
+<h3 id="什么是”状态管理器”"><a href="#什么是”状态管理器”" class="headerlink" title="什么是”状态管理器”"></a>什么是”状态管理器”</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// state</span></span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// view</span></span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="comment">// actions</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    increment () &#123;</span><br><span class="line">      <span class="keyword">this</span>.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">这个状态自管理应用包含以下几个部分：</span><br><span class="line"></span><br><span class="line">state，驱动应用的数据源；</span><br><span class="line">view，以声明方式将 state 映射到视图；</span><br><span class="line">actions，响应在 view 上的用户输入导致的状态变化。</span><br></pre></td></tr></table></figure>
+<h3 id="为何会出现Vuex"><a href="#为何会出现Vuex" class="headerlink" title="为何会出现Vuex"></a>为何会出现Vuex</h3><p>但是，当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：<br>  ● 多个视图依赖于同一状态。<br>  ● 来自不同视图的行为需要变更同一状态。</p>
+<p>对于问题一，传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力。<br>对于问题二，我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝。以上的这些模式非常脆弱，通常会导致无法维护的代码。</p>
 <p>因此，我们为什么不把组件的共享状态抽取出来，以一个全局单例模式管理呢？在这种模式下，我们的组件树构成了一个巨大的“视图”，不管在树的哪个位置，任何组件都能获取状态或者触发行为！<br>另外，通过定义和隔离状态管理中的各种概念并强制遵守一定的规则，我们的代码将会变得更结构化且易维护。<br>这就是 Vuex 背后的基本思想，借鉴了 Flux、Redux、和 The Elm Architecture。与其他模式不同的是，Vuex 是专门为 Vue.js 设计的状态管理库，以利用 Vue.js 的细粒度数据响应机制来进行高效的状态更新。</p>
-<p>什么情况下我应该使用 Vuex？<br>虽然 Vuex 可以帮助我们管理共享状态，但也附带了更多的概念和框架。这需要对短期和长期效益进行权衡。</p>
+<h3 id="什么情况下我应该使用-Vuex？"><a href="#什么情况下我应该使用-Vuex？" class="headerlink" title="什么情况下我应该使用 Vuex？"></a>什么情况下我应该使用 Vuex？</h3><p>虽然 Vuex 可以帮助我们管理共享状态，但也附带了更多的概念和框架。这需要对短期和长期效益进行权衡。</p>
 <p>如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。一个简单的 global event bus 就足够您所需了。但是，如果您需要构建一个中大型单页应用，您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。</p>
+<p><a href="https://vuex.vuejs.org/zh/" target="_blank" rel="noopener">文档来源</a></p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Vue.js" >
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#Vuex" >
+    <span class="tag-code">Vuex</span>
   </a>
 
       </div>
@@ -157,7 +159,7 @@
     
       <a class="nav-right" href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">
         
-          11-Vue.js 构造VUEX的中央管理器
+          02-Vue.js 构造VUEX的中央管理器
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -206,7 +208,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="nav">none</ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是”状态管理器”"><span class="toc-nav-text">什么是”状态管理器”</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为何会出现Vuex"><span class="toc-nav-text">为何会出现Vuex</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么情况下我应该使用-Vuex？"><span class="toc-nav-text">什么情况下我应该使用 Vuex？</span></a></li></ol>
     
   </div>
 </aside>
@@ -272,7 +274,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "10-什么是vuex",
+        id: "01-什么是vuex",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
