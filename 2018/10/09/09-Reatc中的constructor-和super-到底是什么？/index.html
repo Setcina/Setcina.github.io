@@ -10,7 +10,7 @@
   
   <title>
     
-      08-React中的Fragment | Setcina（目前还在更新以及完善中...）
+      09-Reatc中的constructor()和super()到底是什么？ | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>08-React中的Fragment</h2>
-  <p class="post-date">2018-09-28</p>
+  <h2>09-Reatc中的constructor()和super()到底是什么？</h2>
+  <p class="post-date">2018-10-09</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,15 +123,16 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="Fragments的作用"><a href="#Fragments的作用" class="headerlink" title="Fragments的作用"></a>Fragments的作用</h3><p>React 中一个常见模式是为一个组件返回多个元素。Fragments 可以让你聚合一个子元素列表，并且不在DOM中增加额外节点。</p>
-<p>使用如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;                      </span><br><span class="line">  <span class="keyword">return</span> (                      </span><br><span class="line">    &lt;&gt;                          </span><br><span class="line">      &lt;ChildA /&gt;                </span><br><span class="line">      &lt;ChildB /&gt;                </span><br><span class="line">      &lt;ChildC /&gt;                </span><br><span class="line">    &lt;<span class="regexp">/&gt;                         </span></span><br><span class="line"><span class="regexp">  );                            </span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>Fragments 看起来像空的 JSX 标签，但是我们在一个组件中返回子元素列表的时候，为了有效的渲染，会有一个父级的容器存在，那么我们经常会这样写</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Columns</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">        &lt;td&gt;World&lt;/</span>td&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>这种时候，输出的table里面，会存在div这个容器，这显然是有问题的。</p>
-<p>为了在一个table里面正确的输出子元素，这个时候就要借助Fragment，使用如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Columns</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">        &lt;td&gt;World&lt;/</span>td&gt;</span><br><span class="line">      &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>但是，这样的使用，会存在一个问题是，这样的语法没办法接受键值和属性。<br>如果，我们需要一个带key的片段，那么可以用这样使用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Columns</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;React.Fragment key=&#123;item.id&#125;&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">        &lt;td&gt;World&lt;/</span>td&gt;</span><br><span class="line">      &lt;<span class="regexp">/React.Fragment&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>这样子，我们就可以在模板中引用了<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tables</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;table&gt;</span><br><span class="line">        &lt;Columns/&gt;</span><br><span class="line">      &lt;<span class="regexp">/table&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+    <section class="markdown-content"><h3 id="constructor-——构造方法"><a href="#constructor-——构造方法" class="headerlink" title="constructor( )——构造方法"></a>constructor( )——构造方法</h3><p>这是ES6对类的默认方法，通过 new 命令生成对象实例时自动调用该方法。并且，该方法是类中必须有的，如果没有显示定义，则会默认添加空的constructor( )方法。</p>
+<p>ES5中，JavaScript是没有继承的写法的，因此，通过使用 prototype 来达到目的。举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构造函数People</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span> (<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line">People.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'我的名字是：'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建新的子类p1</span></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> People(<span class="string">'harrisking'</span>,<span class="number">23</span>);</span><br></pre></td></tr></table></figure>
+<p>但是在ES6中，可以通过class 来实现。举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line">  <span class="comment">//构造方法constructor就等于上面的构造函数People</span></span><br><span class="line">  <span class="keyword">constructor</span>(name,age)&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  sayName()&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'我的名字是：'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建新的子类p1</span></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> People(<span class="string">'harrisking'</span>,<span class="number">23</span>);</span><br></pre></td></tr></table></figure>
+<p>上面两个例子等价。其实class方法完全就是对象原型的语法糖，效果是完全一样的。</p>
+<h3 id="原型链知识我们一起复习一下："><a href="#原型链知识我们一起复习一下：" class="headerlink" title="原型链知识我们一起复习一下："></a>原型链知识我们一起复习一下：</h3><p><img class="myimage" src="/2018/10/09/09-Reatc中的constructor-和super-到底是什么？/image01.png"><br>构造方法constructor( )其实就是构造函数本身。</p>
+<h3 id="super-——继承"><a href="#super-——继承" class="headerlink" title="super( ) ——继承"></a>super( ) ——继承</h3><p>在class方法中，继承是使用 extends 关键字来实现的。举例如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name,age)&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  sayName()&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'我的名字是：'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">har</span> <span class="keyword">extends</span> <span class="title">People</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name,age,sex)&#123;</span><br><span class="line">        <span class="keyword">super</span>(name,age);<span class="comment">//调用父类的constructor(name,age)</span></span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">    haha()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.sex + <span class="string">' '</span> + <span class="keyword">super</span>.sayName();<span class="comment">//调用父类的sayName() </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的例子中，出现了 super( )，子类 必须 在 constructor( )调用 super( )方法。</p>
+<p>因为子类是没有自己的 this 对象的，它只能继承自父类的 this 对象，然后对其进行加工，而super( )就是将父类中的this对象继承给子类的。没有 super，子类就得不到 this 对象，没有 this 对象而要对 this 进行处理，能不报错吗？<br><br><br>简单解释，就是在ES5的继承中，先创建子类的实例对象this，然后再将父类的方法添加到this上（ Parent.apply(this) ）。而ES6采用的是先创建父类的实例this（故要先调用 super( )方法），完后再用子类的构造函数修改this。<br><br><br>补充：<br>1.子类如果没有 constructor 方法，该方法会被默认添加，即任何的子类都有 constructor 方法，无论定义没定义，它就在那里，不离不弃。<br>2.在子类的构造函数 constructor( )中，只有调用 super( )方法之后，才可以使用 this关键字，否则会报错。</p>
 </section>
     <!-- Tags START -->
     
@@ -150,20 +151,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/09/27/07-React-bind/">
+      <a class="nav-left" href="/2018/09/28/08-React中的Fragment/">
         <span class="nav-arrow">← </span>
         
-          07-React.bind()
+          08-React中的Fragment
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/10/09/09-Reatc中的constructor-和super-到底是什么？/">
-        
-          09-Reatc中的constructor()和super()到底是什么？
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -209,7 +203,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Fragments的作用"><span class="toc-nav-text">Fragments的作用</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#constructor-——构造方法"><span class="toc-nav-text">constructor( )——构造方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#原型链知识我们一起复习一下："><span class="toc-nav-text">原型链知识我们一起复习一下：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#super-——继承"><span class="toc-nav-text">super( ) ——继承</span></a></li></ol>
     
   </div>
 </aside>
@@ -219,7 +213,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/09/28/08-React中的Fragment/';
+    var url = 'http://yoursite.com/2018/10/09/09-Reatc中的constructor-和super-到底是什么？/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -275,7 +269,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "08-React中的Fragment",
+        id: "09-Reatc中的constructor()和super()到底是什么？",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
