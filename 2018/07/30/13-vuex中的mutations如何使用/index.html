@@ -125,8 +125,8 @@
   <article class="post-article">
     <section class="markdown-content"><p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。<br>Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数：</p>
 <h3 id="1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><a href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似" class="headerlink" title="1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"></a>1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</h3><p>在store.js中编写方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mutations:&#123; </span><br><span class="line">  reducePrice(state,payload)&#123; </span><br><span class="line">    state.produce.forEach(<span class="function"><span class="params">reduce</span>=&gt;</span>&#123; </span><br><span class="line">      reduce.price-=payload;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.在组件当中使用mutations</p>
-<p>this.$store.commit(‘reducePrice’)</p>
+<h3 id="2-在组件当中使用mutations"><a href="#2-在组件当中使用mutations" class="headerlink" title="2.在组件当中使用mutations"></a>2.在组件当中使用mutations</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$store.commit(<span class="string">'reducePrice'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-提交荷载（Payload）"><a href="#3-提交荷载（Payload）" class="headerlink" title="3.提交荷载（Payload）"></a>3.提交荷载（Payload）</h3><p>你可以向 store.commit 传入额外的参数，即 mutation 的 载荷（payload）：<br>在大多数情况下，载荷应该是一个对象，这样可以包含多个字段并且记录的 mutation 会更易读：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  increment (state, payload) &#123;</span><br><span class="line">    state.count += payload.amount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">store.commit(<span class="string">'increment'</span>, &#123;</span><br><span class="line">  amount: <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </section>
     <!-- Tags START -->
     
@@ -204,7 +204,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><span class="toc-nav-text">1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><span class="toc-nav-text">1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-在组件当中使用mutations"><span class="toc-nav-text">2.在组件当中使用mutations</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-提交荷载（Payload）"><span class="toc-nav-text">3.提交荷载（Payload）</span></a></li></ol>
     
   </div>
 </aside>
