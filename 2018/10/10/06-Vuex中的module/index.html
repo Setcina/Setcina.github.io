@@ -10,7 +10,7 @@
   
   <title>
     
-      04-vuex中的mutations如何使用 | Setcina（目前还在更新以及完善中...）
+      06-Vuex中的module | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>04-vuex中的mutations如何使用</h2>
-  <p class="post-date">2018-07-30</p>
+  <h2>06-Vuex中的module</h2>
+  <p class="post-date">2018-10-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,11 +123,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。<br>Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数：</p>
-<h3 id="1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><a href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似" class="headerlink" title="1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"></a>1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</h3><p>在store.js中编写方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mutations:&#123; </span><br><span class="line">  reducePrice(state,payload)&#123; </span><br><span class="line">    state.produce.forEach(<span class="function"><span class="params">reduce</span>=&gt;</span>&#123; </span><br><span class="line">      reduce.price-=payload;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-在组件当中使用mutations"><a href="#2-在组件当中使用mutations" class="headerlink" title="2.在组件当中使用mutations"></a>2.在组件当中使用mutations</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$store.commit(<span class="string">'reducePrice'</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="3-提交荷载（Payload）"><a href="#3-提交荷载（Payload）" class="headerlink" title="3.提交荷载（Payload）"></a>3.提交荷载（Payload）</h3><p>你可以向 store.commit 传入额外的参数，即 mutation 的 载荷（payload）：<br>在大多数情况下，载荷应该是一个对象，这样可以包含多个字段并且记录的 mutation 会更易读：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  increment (state, payload) &#123;</span><br><span class="line">    state.count += payload.amount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">store.commit(<span class="string">'increment'</span>, &#123;</span><br><span class="line">  amount: <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</section>
+    <section class="markdown-content"></section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -145,20 +141,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/26/12-如何高效使用vuex来获取数据/">
+      <a class="nav-left" href="/2018/10/10/04-vuex中的actions/">
         <span class="nav-arrow">← </span>
         
-          03-如何高效使用vuex来获取数据
+          05-vuex中的actions
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/07/31/01-Git常用命令/">
-        
-          01-Git常用命令
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -204,7 +193,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似"><span class="toc-nav-text">1.其实在vuex中的mutations更加像是vue中的methods。编写也和methods类似</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-在组件当中使用mutations"><span class="toc-nav-text">2.在组件当中使用mutations</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-提交荷载（Payload）"><span class="toc-nav-text">3.提交荷载（Payload）</span></a></li></ol>
+      <ol class="nav">none</ol>
     
   </div>
 </aside>
@@ -214,7 +203,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/30/13-vuex中的mutations如何使用/';
+    var url = 'http://yoursite.com/2018/10/10/06-Vuex中的module/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +259,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "04-vuex中的mutations如何使用",
+        id: "06-Vuex中的module",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
