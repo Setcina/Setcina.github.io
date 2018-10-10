@@ -10,7 +10,7 @@
   
   <title>
     
-      03-如何高效使用vuex来获取数据 | Setcina（目前还在更新以及完善中...）
+      04-vuex中的actions | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>03-如何高效使用vuex来获取数据</h2>
-  <p class="post-date">2018-07-26</p>
+  <h2>04-vuex中的actions</h2>
+  <p class="post-date">2018-10-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -123,15 +123,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据"><a href="#我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据" class="headerlink" title="我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据"></a>我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据</h3><p>首先创建一个store文件夹并在里面创建store.js，构建好组件所需要的数据，然后，通过getters这个属性，去构造方法。<br><br><br>什么是getter<br><br><br>有时候我们需要从 store 中的 state 中派生出一些状态，例如对列表进行过滤并计数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  doneTodosCount () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.$store.state.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.done).length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果有多个组件需要用到此属性，我们要么复制这个函数，或者抽取到一个共享函数然后在多处导入它——无论哪种方式都不是很理想。</p>
-<p>Vuex 允许我们在 store 中定义“getter”（可以认为是 store 的计算属性）。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。例子如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入vue以及vuex</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//引用vuex</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="comment">//建立数据store</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;	</span><br><span class="line">  state:&#123; </span><br><span class="line">    produce:[ </span><br><span class="line">      &#123;<span class="attr">name</span>:<span class="string">'汉堡'</span>,<span class="attr">price</span>:<span class="string">'10'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">name</span>:<span class="string">'薯条'</span>,<span class="attr">price</span>:<span class="string">'4'</span>&#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  getters:&#123; </span><br><span class="line">    originState(state)&#123; </span><br><span class="line">      <span class="keyword">return</span> state.produce</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>在这里，我们构造了一个方法originState，那么，我们也应该如何使用</p>
-<h3 id="在组件中，我们需要调用到计算属性，用来给组件以及store-js构建一个通道（computed）"><a href="#在组件中，我们需要调用到计算属性，用来给组件以及store-js构建一个通道（computed）" class="headerlink" title="在组件中，我们需要调用到计算属性，用来给组件以及store.js构建一个通道（computed）"></a>在组件中，我们需要调用到计算属性，用来给组件以及store.js构建一个通道（computed）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123; </span><br><span class="line">  name :<span class="string">'one'</span>,</span><br><span class="line">  computed:&#123;  </span><br><span class="line">    price()&#123;  </span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.originPrice</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意写法 this.$store.getters.originPrice</p>
-<p>最后，在组件中使用数据<br></p>
-</section>
+    <section class="markdown-content"></section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -149,20 +141,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">
+      <a class="nav-left" href="/2018/10/09/09-Reatc中的constructor-和super-到底是什么？/">
         <span class="nav-arrow">← </span>
         
-          02-Vue.js 构造VUEX的中央管理器
+          09-Reatc中的constructor()和super()到底是什么？
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/07/30/13-vuex中的mutations如何使用/">
-        
-          03-vuex中的mutations如何使用
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -208,7 +193,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据"><span class="toc-nav-text">我们需要注意的是vuex作为一个状态管理器，需要再state中建立数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在组件中，我们需要调用到计算属性，用来给组件以及store-js构建一个通道（computed）"><span class="toc-nav-text">在组件中，我们需要调用到计算属性，用来给组件以及store.js构建一个通道（computed）</span></a></li></ol>
+      <ol class="nav">none</ol>
     
   </div>
 </aside>
@@ -218,7 +203,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/26/12-如何高效使用vuex来获取数据/';
+    var url = 'http://yoursite.com/2018/10/10/04-vuex中的actions/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -274,7 +259,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "03-如何高效使用vuex来获取数据",
+        id: "04-vuex中的actions",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
