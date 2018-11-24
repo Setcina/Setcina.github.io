@@ -19,7 +19,7 @@ body {
 }
 @media screen and (max-width: 480px) {
   body {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 ol,
@@ -582,7 +582,6 @@ h2.article-head {
 .markdown-content blockquote,
 .article-summary blockquote {
   margin: 1em 0;
-  padding: 15px 20px;
   border-left: 4px solid #42b983;
   background: #f8f8f8;
   border-bottom-right-radius: 2px;

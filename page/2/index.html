@@ -159,7 +159,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/09/13/05-React-属性传值（传事件）/">05-React-属性传值（传事件）</a>
+        <a href="/2018/09/13/05-React-属性传值（传事件）/">05-React-传值方式</a>
       </h2>
       <p class="article-date">September 13, 2018</p>
       
@@ -171,34 +171,11 @@
       
       <div class="article-summary">
         
-          如何将事件带的参数传回给事件本身，如下图所示
- 我们先解析一下上面的代码我们可以看到&lt;User myClick = {this.switchName.bind(this,”Exiaer”) }/&gt;绑定了一个属性myClick，而这个属性值所绑定的其实是一个事件switchName ...
+          父组件向子组件传值通过props来传值，这种应用，很多时候我们某个组件在不同的地方用到，但是就只是内容不一样，这样在调用组件就是父组件的时候给各自自己的值就好
+1234567891011121314151617181920212223//子组件class Es6cComponent exte ...
         
       </div>
       <a class="more" href="/2018/09/13/05-React-属性传值（传事件）/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/09/13/04-React-state状态的使用/">04-React-state状态的使用</a>
-      </h2>
-      <p class="article-date">September 13, 2018</p>
-      
-        
-  <a href="/tags#React.js" >
-    <span class="tag-code">React.js</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          首先我们要明白state和props之间很相似，容易混淆。属性更多的是用来组件之间的通信state并不是用来传值的，而是改变一个值的状态
-首先定义state
-如何在取值，使用{this.state.Users[0].name}可以取到值
-如果要更改state里面的值，我们可以调用一个方法，并 ...
-        
-      </div>
-      <a class="more" href="/2018/09/13/04-React-state状态的使用/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -222,26 +199,6 @@
         
       </div>
       <a class="more" href="/2018/09/13/03-React组件通信/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/08/22/02-React文件结构和JSX语法/">02-React文件结构和JSX语法</a>
-      </h2>
-      <p class="article-date">August 22, 2018</p>
-      
-        
-  <a href="/tags#React.js" >
-    <span class="tag-code">React.js</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          题外话：为什么在同一文件目录还需要 ‘./ ‘ 这样的方式选择文件，原因是因为在React.js以及Vue.js当中，引入一个Vue或者React，只需要import Vue/React from ‘vue/react’。如果引用自己编写的模块（components）不加上’ ./ ‘，Vu ...
-        
-      </div>
-      <a class="more" href="/2018/08/22/02-React文件结构和JSX语法/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -327,6 +284,49 @@
         
       </div>
       <a class="more" href="/2018/07/26/12-如何高效使用vuex来获取数据/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">02-Vue.js 构造VUEX的中央管理器</a>
+      </h2>
+      <p class="article-date">July 26, 2018</p>
+      
+        
+  <a href="/tags#Vuex" >
+    <span class="tag-code">Vuex</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          安装依赖1npm install vuex --save-dev
+在文件目录下建立store文件夹，并且建立store.js12文件建立src/store/store.js
+构造单一状态树Vuex 使用单一状态树——是的，用一个对象就包含了全部的应用层级状态。至此它便作为一个“唯一数据源 ( ...
+        
+      </div>
+      <a class="more" href="/2018/07/26/11-Vue-js-构造VUEX的中央管理器/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/25/10-什么是vuex/">01-什么是vuex</a>
+      </h2>
+      <p class="article-date">July 25, 2018</p>
+      
+        
+  <a href="/tags#Vuex" >
+    <span class="tag-code">Vuex</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+什么是”状态管理器”1234567891011121314151617181920212223new Vue(&#123;  // s ...
+        
+      </div>
+      <a class="more" href="/2018/07/25/10-什么是vuex/">Read more</a>
     </article>
   
 

@@ -10,7 +10,7 @@
   
   <title>
     
-      05-React-属性传值（传事件） | Setcina（目前还在更新以及完善中...）
+      05-React-传值方式 | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -114,7 +114,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>05-React-属性传值（传事件）</h2>
+  <h2>05-React-传值方式</h2>
   <p class="post-date">2018-09-13</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -123,11 +123,9 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="如何将事件带的参数传回给事件本身，如下图所示"><a href="#如何将事件带的参数传回给事件本身，如下图所示" class="headerlink" title="如何将事件带的参数传回给事件本身，如下图所示"></a>如何将事件带的参数传回给事件本身，如下图所示</h3><p><img class="myimage" src="/2018/09/13/05-React-属性传值（传事件）/image01.png"></p>
-<p></p><p> </p><br>我们先解析一下上面的代码<br>我们可以看到&lt;User myClick = {this.switchName.bind(this,”Exiaer”) }/&gt;绑定了一个属性myClick，而这个属性值所绑定的其实是一个事件switchName<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="keyword">this</span>.switchName.bind(<span class="keyword">this</span>,<span class="string">"Exiaer"</span>)&#125;</span><br></pre></td></tr></table></figure><p></p>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p><img class="myimage" src="/2018/09/13/05-React-属性传值（传事件）/image02.png"></p>
-<p></p><p> </p><br>解析上面代码<br>在方法中接受定义一个形参myClick接受这个“Exiaer”的参数<br>我们可以直接在这种无状态组件中，直接使用{props.myClick}获取到父组件传过来的值，当然了，如果要进行修改的话，其实都是需要通过父组件的方法，所以我们要了解到一件事情，当我们属性值修改的时候<br>我们一般是会调用到父组件的事件来进行数据的更改<p></p>
-</section>
+    <section class="markdown-content"><h3 id="父组件向子组件传值"><a href="#父组件向子组件传值" class="headerlink" title="父组件向子组件传值"></a>父组件向子组件传值</h3><p>通过props来传值，这种应用，很多时候我们某个组件在不同的地方用到，但是就只是内容不一样，这样在调用组件就是父组件的时候给各自自己的值就好</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Es6cComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">              &lt;div&gt;&#123;<span class="keyword">this</span>.props.nameall&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Es6cComponent nameall=<span class="string">"abc"</span>/&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="子组件向父组件传值（回调函数）"><a href="#子组件向父组件传值（回调函数）" class="headerlink" title="子组件向父组件传值（回调函数）"></a>子组件向父组件传值（回调函数）</h3></section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -145,10 +143,10 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/09/13/04-React-state状态的使用/">
+      <a class="nav-left" href="/2018/09/13/03-React组件通信/">
         <span class="nav-arrow">← </span>
         
-          04-React-state状态的使用
+          03-React组件通信
         
       </a>
     
@@ -204,7 +202,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何将事件带的参数传回给事件本身，如下图所示"><span class="toc-nav-text">如何将事件带的参数传回给事件本身，如下图所示</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何使用"><span class="toc-nav-text">如何使用</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#父组件向子组件传值"><span class="toc-nav-text">父组件向子组件传值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#子组件向父组件传值（回调函数）"><span class="toc-nav-text">子组件向父组件传值（回调函数）</span></a></li></ol>
     
   </div>
 </aside>
@@ -270,7 +268,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "05-React-属性传值（传事件）",
+        id: "05-React-传值方式",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
