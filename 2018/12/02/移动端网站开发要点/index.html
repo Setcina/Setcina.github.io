@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Setcina blog">
+  <meta name="keyword" content="Setcina">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      移动端网站开发要点 | Setcina（目前还在更新以及完善中...）
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Setcina（目前还在更新以及完善中...）</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>移动端网站开发要点</h2>
+  <p class="post-date">2018-12-02</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Head标签中要点"><a href="#Head标签中要点" class="headerlink" title="Head标签中要点"></a>Head标签中要点</h1><h4 id="标注作者"><a href="#标注作者" class="headerlink" title="标注作者"></a>标注作者</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"author"</span> content=<span class="string">"网站域名"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="在浏览器中页面将以原始大小显示，并不允许缩放"><a href="#在浏览器中页面将以原始大小显示，并不允许缩放" class="headerlink" title="在浏览器中页面将以原始大小显示，并不允许缩放"></a>在浏览器中页面将以原始大小显示，并不允许缩放</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>width:viewport的宽度（范围从200到10,000，默认为980像素）</li>
+<li>height:viewport的高度（范围从223到10,000）</li>
+<li>initial-scale:初始的缩放比例（范围从&gt;0到10）</li>
+<li>minimum-scale:允许用户缩放到的最小比例</li>
+<li>maximum-scale:允许用户缩放到的最大比例</li>
+<li>user-scalable:用户是否可以手动缩放</li>
+</ul>
+<h4 id="在浏览器中页面中出现的手机号码将不以拨号的超链接的形式出现，在iphone中默认以超链接形式出现（无需添加）"><a href="#在浏览器中页面中出现的手机号码将不以拨号的超链接的形式出现，在iphone中默认以超链接形式出现（无需添加）" class="headerlink" title="在浏览器中页面中出现的手机号码将不以拨号的超链接的形式出现，在iphone中默认以超链接形式出现（无需添加）"></a>在浏览器中页面中出现的手机号码将不以拨号的超链接的形式出现，在iphone中默认以超链接形式出现（无需添加）</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="不识别页面中出现的邮箱"><a href="#不识别页面中出现的邮箱" class="headerlink" title="不识别页面中出现的邮箱"></a>不识别页面中出现的邮箱</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"email=no"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="开启页面对webapp程序的支持，一开始不需要添加"><a href="#开启页面对webapp程序的支持，一开始不需要添加" class="headerlink" title="开启页面对webapp程序的支持，一开始不需要添加"></a>开启页面对webapp程序的支持，一开始不需要添加</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="在webapp应用下状态条-屏幕顶部条-的颜色-默认default为白色，可以定义为黑色black和灰色半透明black-translucent。"><a href="#在webapp应用下状态条-屏幕顶部条-的颜色-默认default为白色，可以定义为黑色black和灰色半透明black-translucent。" class="headerlink" title="在webapp应用下状态条(屏幕顶部条)的颜色,默认default为白色，可以定义为黑色black和灰色半透明black-translucent。"></a>在webapp应用下状态条(屏幕顶部条)的颜色,默认default为白色，可以定义为黑色black和灰色半透明black-translucent。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：若值为“black-translucent”将会占据页面px位置，浮在页面上方（会覆盖页面20px高度–iphone4和itouch4的Retina屏幕为40px）</li>
+</ul>
+<h4 id="苹果web-app持有"><a href="#苹果web-app持有" class="headerlink" title="苹果web app持有"></a>苹果web app持有</h4><h4 id="“添加到主屏幕“后，全屏显示（完全不明白-可以添加）"><a href="#“添加到主屏幕“后，全屏显示（完全不明白-可以添加）" class="headerlink" title="“添加到主屏幕“后，全屏显示（完全不明白,可以添加）"></a>“添加到主屏幕“后，全屏显示（完全不明白,可以添加）</h4><meta name="apple-touch-fullscreen" content="yes">
+
+<h4 id="删除默认的苹果工具栏和菜单栏-默认是显示（无需添加）"><a href="#删除默认的苹果工具栏和菜单栏-默认是显示（无需添加）" class="headerlink" title="删除默认的苹果工具栏和菜单栏,默认是显示（无需添加）"></a>删除默认的苹果工具栏和菜单栏,默认是显示（无需添加）</h4><meta name="apple-mobile-web-app-capable" content="no">
+
+<h4 id="在用户把网页存为书签时，在手机HOME界面创建应用程序样式的图标，换句话就是：这个link就是设置webapp的放置主屏幕上icon文件路径"><a href="#在用户把网页存为书签时，在手机HOME界面创建应用程序样式的图标，换句话就是：这个link就是设置webapp的放置主屏幕上icon文件路径" class="headerlink" title="在用户把网页存为书签时，在手机HOME界面创建应用程序样式的图标，换句话就是：这个link就是设置webapp的放置主屏幕上icon文件路径"></a>在用户把网页存为书签时，在手机HOME界面创建应用程序样式的图标，换句话就是：这个link就是设置webapp的放置主屏幕上icon文件路径</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//IOS</span></span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon"</span> href=<span class="string">"iphone_milanoo.png"</span>/&gt;</span><br><span class="line"><span class="comment">//Android</span></span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon-precomposed"</span> href=<span class="string">"iphone_milanoo.png"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：该路径需要注意的就是放到将网站的文档根目录下而不是服务器的文档的根目录</li>
+</ul>
+<h4 id="设置启动时的界面显示的图片"><a href="#设置启动时的界面显示的图片" class="headerlink" title="设置启动时的界面显示的图片"></a>设置启动时的界面显示的图片</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">"apple-touch-startup-image"</span> href=<span class="string">"milanoo_startup.png"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：该路径需要注意的就是放到将网站的文档根目录下但不是服务器的文档的根目录。<br>官方规定启动界面的尺寸必须为320*640（px），原本以为Retina屏幕可以支持双倍，但是不支持，图片显示不出来。</li>
+</ul>
+<h4 id="几个网站的离职"><a href="#几个网站的离职" class="headerlink" title="几个网站的离职"></a>几个网站的离职</h4><h3 id="红岭创投"><a href="#红岭创投" class="headerlink" title="红岭创投"></a>红岭创投</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;值得信赖的P2P网络借贷平台_红岭创投&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="author" content="m.my089.com" /</span>&gt;</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-touch-fullscreen"</span> content=<span class="string">"yes"</span>&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon"</span> href=<span class="string">"touch-icon-iphone.png"</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon-precomposed"</span> href=<span class="string">"touch-icon-iphone.png"</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon-precomposed"</span> sizes=<span class="string">"72x72"</span> href=<span class="string">"touch-icon-iphone72.png"</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon-precomposed"</span> sizes=<span class="string">"114x114"</span> href=<span class="string">"touch-icon-iphone114.png"</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon-precomposed"</span> sizes=<span class="string">"144x144"</span> href=<span class="string">"touch-icon-iphone144.png"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="天猫"><a href="#天猫" class="headerlink" title="天猫"></a>天猫</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;天猫触屏版&lt;<span class="regexp">/title&gt; </span></span><br><span class="line"><span class="regexp">&lt;meta content="text/</span>html; charset=utf<span class="number">-8</span><span class="string">" http-equiv="</span>Content-Type<span class="string">"&gt;     </span></span><br><span class="line"><span class="string">&lt;meta charset="</span>utf<span class="number">-8</span><span class="string">"&gt;             </span></span><br><span class="line"><span class="string">&lt;meta content="</span>width=device-width, initial-scale=<span class="number">1.0</span>, maximum-scale=<span class="number">1.0</span>, user-scalable=<span class="number">0</span><span class="string">" name="</span>viewport<span class="string">"&gt;     </span></span><br><span class="line"><span class="string">&lt;meta content="</span>yes<span class="string">" name="</span>apple-mobile-web-app-capable<span class="string">"&gt;     </span></span><br><span class="line"><span class="string">&lt;meta content="</span>black<span class="string">" name="</span>apple-mobile-web-app-status-bar-style<span class="string">"&gt;     </span></span><br><span class="line"><span class="string">&lt;meta content="</span>telephone=no<span class="string">" name="</span>format-detection<span class="string">"&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="淘宝"><a href="#淘宝" class="headerlink" title="淘宝"></a>淘宝</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;淘宝网触屏版&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta charset="utf-8"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta content="yes" name="apple-mobile-web-app-capable"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta content="yes" name="apple-touch-fullscreen"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta content="telephone=no" name="format-detection"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta content="black" name="apple-mobile-web-app-status-bar-style"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta property="wb:webmaster" content="c51923015ca19eb1"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="author" content="m.taobao.com"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="copyright" content="Copyright ©m.taobao.com 版权所有"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="revisit-after" content="1 days"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="keywords" content=""&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="description" content=""&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="京东"><a href="#京东" class="headerlink" title="京东"></a>京东</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt; 京东 - 手机版 &lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="format-detection" content="telephone=no"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="Keywords" content="手机购物,WAP商城,日用百货,3C家电,汽车用品"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="description" content="京东手机版提供了包括数码、家电、手机、电脑配件、网络产品、日用百货等数万种商品，手机快捷购物，就上京东手机版。"&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="网易"><a href="#网易" class="headerlink" title="网易"></a>网易</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;title&gt;手机网易网&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta charset="UTF-8"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta content="width=device-width,user-scalable=no" name="viewport"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="apple-itunes-app" content="app-id=425349261"&gt;</span></span><br><span class="line"><span class="regexp">&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="百度"><a href="#百度" class="headerlink" title="百度"></a>百度</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span>&gt;</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span>&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span>&gt;</span><br></pre></td></tr></table></figure>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#移动Web" >
+    <span class="tag-code">移动Web</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/10/23/10-在Vue中如何处理跨域问题/">
+        <span class="nav-arrow">← </span>
+        
+          10-在Vue中如何处理跨域问题
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!-- 
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+     -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <!-- <div id="comments"></div> -->
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Head标签中要点"><span class="toc-nav-text">Head标签中要点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#标注作者"><span class="toc-nav-text">标注作者</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#在浏览器中页面将以原始大小显示，并不允许缩放"><span class="toc-nav-text">在浏览器中页面将以原始大小显示，并不允许缩放</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#在浏览器中页面中出现的手机号码将不以拨号的超链接的形式出现，在iphone中默认以超链接形式出现（无需添加）"><span class="toc-nav-text">在浏览器中页面中出现的手机号码将不以拨号的超链接的形式出现，在iphone中默认以超链接形式出现（无需添加）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不识别页面中出现的邮箱"><span class="toc-nav-text">不识别页面中出现的邮箱</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#开启页面对webapp程序的支持，一开始不需要添加"><span class="toc-nav-text">开启页面对webapp程序的支持，一开始不需要添加</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#在webapp应用下状态条-屏幕顶部条-的颜色-默认default为白色，可以定义为黑色black和灰色半透明black-translucent。"><span class="toc-nav-text">在webapp应用下状态条(屏幕顶部条)的颜色,默认default为白色，可以定义为黑色black和灰色半透明black-translucent。</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#苹果web-app持有"><span class="toc-nav-text">苹果web app持有</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#“添加到主屏幕“后，全屏显示（完全不明白-可以添加）"><span class="toc-nav-text">“添加到主屏幕“后，全屏显示（完全不明白,可以添加）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#删除默认的苹果工具栏和菜单栏-默认是显示（无需添加）"><span class="toc-nav-text">删除默认的苹果工具栏和菜单栏,默认是显示（无需添加）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#在用户把网页存为书签时，在手机HOME界面创建应用程序样式的图标，换句话就是：这个link就是设置webapp的放置主屏幕上icon文件路径"><span class="toc-nav-text">在用户把网页存为书签时，在手机HOME界面创建应用程序样式的图标，换句话就是：这个link就是设置webapp的放置主屏幕上icon文件路径</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#设置启动时的界面显示的图片"><span class="toc-nav-text">设置启动时的界面显示的图片</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#几个网站的离职"><span class="toc-nav-text">几个网站的离职</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#红岭创投"><span class="toc-nav-text">红岭创投</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#天猫"><span class="toc-nav-text">天猫</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#淘宝"><span class="toc-nav-text">淘宝</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#京东"><span class="toc-nav-text">京东</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网易"><span class="toc-nav-text">网易</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#百度"><span class="toc-nav-text">百度</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/12/02/移动端网站开发要点/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "移动端网站开发要点",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Blogs by Setcina
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
