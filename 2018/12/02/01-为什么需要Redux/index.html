@@ -144,26 +144,26 @@
 <p>为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就成为了最热门的前端架构。</p>
 <p>首先要明确自己，需不需要Redux</p>
 <p>Redux 是一个有用的架构，但不是非用不可。事实上，大多数情况，你可以不用它，只用 React 就够了。</p>
-<h6 id="如果你的UI层非常简单，没有很多互动，Redux-就是不必要的，用了反而增加复杂性。"><a href="#如果你的UI层非常简单，没有很多互动，Redux-就是不必要的，用了反而增加复杂性。" class="headerlink" title="如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。"></a>如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。</h6><ul>
+<h4 id="如果你的UI层非常简单，没有很多互动，Redux-就是不必要的，用了反而增加复杂性。"><a href="#如果你的UI层非常简单，没有很多互动，Redux-就是不必要的，用了反而增加复杂性。" class="headerlink" title="如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。"></a>如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。</h4><ul>
 <li>1.用户的使用方式非常简单</li>
 <li>2.用户之间没有协作</li>
 <li>3.不需要与服务器大量交互，也没有使用 WebSocket</li>
 <li>4.视图层（View）只从单一来源获取数据</li>
 </ul>
-<h6 id="那么在以下这些情况，你就需要用到Redux了"><a href="#那么在以下这些情况，你就需要用到Redux了" class="headerlink" title="那么在以下这些情况，你就需要用到Redux了"></a>那么在以下这些情况，你就需要用到Redux了</h6><ul>
+<h4 id="那么在以下这些情况，你就需要用到Redux了"><a href="#那么在以下这些情况，你就需要用到Redux了" class="headerlink" title="那么在以下这些情况，你就需要用到Redux了"></a>那么在以下这些情况，你就需要用到Redux了</h4><ul>
 <li>1.用户的使用方式复杂</li>
 <li>2.不同身份的用户有不同的使用方式（比如普通用户和管理员）</li>
 <li>3.多个用户之间可以协作</li>
 <li>4.与服务器大量交互，或者使用了WebSocket</li>
 <li>5.View要从多个来源获取数据</li>
 </ul>
-<h6 id="从组件角度看，如果你的应用有以下场景，可以考虑使用-Redux。"><a href="#从组件角度看，如果你的应用有以下场景，可以考虑使用-Redux。" class="headerlink" title="从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux。"></a>从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux。</h6><ul>
+<h4 id="从组件角度看，如果你的应用有以下场景，可以考虑使用-Redux。"><a href="#从组件角度看，如果你的应用有以下场景，可以考虑使用-Redux。" class="headerlink" title="从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux。"></a>从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux。</h4><ul>
 <li>某个组件的状态，需要共享</li>
 <li>某个状态需要在任何地方都可以拿到</li>
 <li>一个组件需要改变全局状态</li>
 <li>一个组件需要改变另一个组件的状态</li>
 </ul>
-<h5 id="我们可以看一下Redux的工作流程"><a href="#我们可以看一下Redux的工作流程" class="headerlink" title="我们可以看一下Redux的工作流程"></a>我们可以看一下Redux的工作流程</h5><p><img src="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016091802.jpg" alt="" title=""></p>
+<h4 id="我们可以看一下Redux的工作流程"><a href="#我们可以看一下Redux的工作流程" class="headerlink" title="我们可以看一下Redux的工作流程"></a>我们可以看一下Redux的工作流程</h4><p><img src="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016091802.jpg" alt="" title=""></p>
 <ul>
 <li><p>1.首先用户发出action   </p>
 </li>
@@ -242,7 +242,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#如果你的UI层非常简单，没有很多互动，Redux-就是不必要的，用了反而增加复杂性。"><span class="toc-nav-text">如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#那么在以下这些情况，你就需要用到Redux了"><span class="toc-nav-text">那么在以下这些情况，你就需要用到Redux了</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#从组件角度看，如果你的应用有以下场景，可以考虑使用-Redux。"><span class="toc-nav-text">从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux。</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#我们可以看一下Redux的工作流程"><span class="toc-nav-text">我们可以看一下Redux的工作流程</span></a>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如果你的UI层非常简单，没有很多互动，Redux-就是不必要的，用了反而增加复杂性。"><span class="toc-nav-text">如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#那么在以下这些情况，你就需要用到Redux了"><span class="toc-nav-text">那么在以下这些情况，你就需要用到Redux了</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#从组件角度看，如果你的应用有以下场景，可以考虑使用-Redux。"><span class="toc-nav-text">从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux。</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#我们可以看一下Redux的工作流程"><span class="toc-nav-text">我们可以看一下Redux的工作流程</span></a></li></ol>
     
   </div>
 </aside>
