@@ -10,7 +10,7 @@
   
   <title>
     
-      01-Vue.js如何全局安装，以及需要安装的模块 | Setcina（目前还在更新以及完善中...）
+      css3使用vw和vh视口单位实现自适应 | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -126,8 +126,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>01-Vue.js如何全局安装，以及需要安装的模块</h2>
-  <p class="post-date">2018-07-20</p>
+  <h2>css3使用vw和vh视口单位实现自适应</h2>
+  <p class="post-date">2019-01-17</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -135,20 +135,46 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">Vue</a> (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="你可以直接使用生产版本的Vue-js"><a href="#你可以直接使用生产版本的Vue-js" class="headerlink" title="你可以直接使用生产版本的Vue.js"></a>你可以直接使用生产版本的Vue.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="更加高级一点的方法，你可以使用vue-cli"><a href="#更加高级一点的方法，你可以使用vue-cli" class="headerlink" title="更加高级一点的方法，你可以使用vue-cli"></a>更加高级一点的方法，你可以使用vue-cli</h3><p>当然了，在全局安装vue-cli脚手架之前，你有必要先安装node.js，最好也顺手安装git以及webpack</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node.js安装地址：https://nodejs.org/en/</span><br><span class="line">git安装地址：https://git-scm.com/download</span><br><span class="line">webpack全局安装：npm install webpack -g</span><br></pre></td></tr></table></figure>
-<h3 id="全局安装-vue-cli"><a href="#全局安装-vue-cli" class="headerlink" title="全局安装 vue-cli"></a>全局安装 vue-cli</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --global vue-cli</span><br><span class="line"><span class="comment"># 创建一个基于 webpack 模板的新项目</span></span><br><span class="line">$ vue init webpack my-project</span><br><span class="line"><span class="comment"># 安装依赖，走你</span></span><br><span class="line">$ <span class="built_in">cd</span> my-project</span><br><span class="line">$ npm run dev</span><br></pre></td></tr></table></figure>
-<h3 id="模块当然不能少"><a href="#模块当然不能少" class="headerlink" title="模块当然不能少~~~"></a>模块当然不能少~~~</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">安装的依赖模块</span><br><span class="line">路由</span><br><span class="line">npm install vue-router --save-dev</span><br><span class="line">resource</span><br><span class="line">npm install vue-resource --save-dev</span><br><span class="line">jq</span><br><span class="line">npm install jquery --save-dev</span><br><span class="line">less</span><br><span class="line">npm install less --save-dev  </span><br><span class="line">npm install less-loader --save-dev </span><br><span class="line">sass</span><br><span class="line">npm install node-sass --save-dev  </span><br><span class="line">npm install sass-loader --save-dev</span><br></pre></td></tr></table></figure></section>
+    <section class="markdown-content"><p>响应式布局的实现依靠媒体查询（ Media Queries ）来实现，选取主流设备宽度尺寸作为断点针对性写额外的样式进行适配，但这样做会比较麻烦，只能在选取的几个主流设备尺寸下呈现完美适配。</p>
+<p>即使是通过 rem 单位来实现适配，也是需要内嵌一段脚本去动态计算根元素大小。（最出名的是阿里的flexible.js移动端自适应方案）</p>
+<ul>
+<li><blockquote>
+<p>flexible.js的原理其实是在html标签上增加一个data-dpr属性和font-size样式。它首先会获取设备型号，然后根据不同设备添加不同的data-dpr值。这个方案其实我之前一直有尝试着去用，但我还是比较抗拒一个页面布局需用用js来适配。后来也发现更好的方案就是vw和vh的应用。</p>
+</blockquote>
+</li>
+</ul>
+<p>而近年来，随着移动端对视口单位的支持越来越成熟、广泛，使得我们可以尝试一种新的办法去真正地适配所有设备尺寸。</p>
+<h4 id="视口单位（viewport-units）"><a href="#视口单位（viewport-units）" class="headerlink" title="视口单位（viewport units）"></a>视口单位（viewport units）</h4><ul>
+<li><blockquote>
+<p>桌面端，视口指的是在桌面端，指的是浏览器的可视区域</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>移动端较为复杂，它涉及到三个视口：分别是 Layout Viewport（布局视口）、 Visual Viewport（视觉视口）、Ideal Viewport。<br>在桌面端的视口，毫无疑问就是浏览器的可视区域，但是在移动端，它指的是Layout Viewport（布局视口）</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2019/01/17/css3使用vw和vh视口单位实现自适应/image01.png" class="myimage"></p>
+<p></p>
+
+<p>视口单位主要包括以下4个</p>
+<ul>
+<li>vw : 1vw 等于视口宽度的1%</li>
+<li>vh : 1vh 等于视口高度的1%</li>
+<li>vmin : 选取 vw 和 vh 中最小的那个</li>
+<li>vmax : 选取 vw 和 vh 中最大的那个</li>
+</ul>
+<p>视口单位区别于百分比单位，因为视口单位是依赖于视口的尺寸，根据视口尺寸的百分比来定义的；而百分比单位则是依赖于元素的祖先元素。</p>
+<p><img src="/2019/01/17/css3使用vw和vh视口单位实现自适应/image02.png" class="myimage"></p>
+<p></p><p></p><br>用视口单位度量，视口宽度为100vw，高度为100vh（左侧为竖屏情况，右侧为横屏情况）<p></p>
+<h4 id="搭配vw和rem"><a href="#搭配vw和rem" class="headerlink" title="搭配vw和rem"></a>搭配vw和rem</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推</span><br><span class="line">$vm_fontsize: 75; // iPhone 6尺寸的根元素大小基准值</span><br><span class="line">@<span class="keyword">function</span> rem($px) &#123;</span><br><span class="line">     @<span class="keyword">return</span> ($px / $vm_fontsize ) * <span class="number">0.5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 根元素大小使用 vw 单位</span><br><span class="line">$vm_design: 750;</span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: ($vm_fontsize / ($vm_design / <span class="number">2</span>)) * <span class="number">100vw</span>; </span><br><span class="line">    // 同时，通过Media Queries 限制根元素最大最小值</span><br><span class="line">    @<span class="keyword">media</span> screen and (max-width: <span class="number">320px</span>) &#123;</span><br><span class="line">        <span class="selector-tag">font-size</span>: 64<span class="selector-tag">px</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">    @<span class="keyword">media</span> screen and (min-width: <span class="number">750px</span>) &#123;</span><br><span class="line">        <span class="selector-tag">font-size</span>: 150<span class="selector-tag">px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">750px</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">320px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.nav</span>&#123; </span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">  nav&#123;  </span><br><span class="line">    <span class="selector-tag">padding</span>: <span class="selector-tag">rem</span>(20) 0;</span><br><span class="line">    <span class="selector-tag">width</span>: 100%;</span><br><span class="line">    <span class="selector-tag">height</span>: <span class="selector-tag">rem</span>(120);</span><br><span class="line">    <span class="selector-tag">background</span>: <span class="selector-id">#d5fafc</span>;</span><br><span class="line">    <span class="selector-tag">a</span>&#123;  </span><br><span class="line">      <span class="attribute">display</span>: block; </span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">      <span class="attribute">width</span>: <span class="built_in">rem</span>(120);</span><br><span class="line">      <span class="attribute">height</span>: <span class="built_in">rem</span>(120);</span><br><span class="line">      <span class="attribute">background</span>: red;</span><br><span class="line">      <span class="attribute">margin</span>: <span class="number">0</span> <span class="built_in">rem</span>(15);</span><br><span class="line">      <span class="attribute">font-size</span>: <span class="built_in">rem</span>(20);</span><br><span class="line">      <span class="attribute">line-height</span>: <span class="built_in">rem</span>(120);</span><br><span class="line">      <span class="attribute">text-align</span>: center;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Vue.js">
-    <span class="tag-code">Vue.js</span>
+  <a href="/tags#移动Web">
+    <span class="tag-code">移动Web</span>
   </a>
 
       </div>
@@ -159,13 +185,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-    
-      <a class="nav-right" href="/2018/07/22/02-如何在Vue-js使用css/">
+      <a class="nav-left" href="/2019/01/09/hello-world/">
+        <span class="nav-arrow">← </span>
         
-          02-如何在Vue.js使用css
+          Hello World
         
-        <span class="nav-arrow"> →</span>
       </a>
+    
     
   </div>
 
@@ -211,7 +237,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Quick-Start"><span class="toc-nav-text">Quick Start</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#你可以直接使用生产版本的Vue-js"><span class="toc-nav-text">你可以直接使用生产版本的Vue.js</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#更加高级一点的方法，你可以使用vue-cli"><span class="toc-nav-text">更加高级一点的方法，你可以使用vue-cli</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#全局安装-vue-cli"><span class="toc-nav-text">全局安装 vue-cli</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模块当然不能少"><span class="toc-nav-text">模块当然不能少~~~</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#视口单位（viewport-units）"><span class="toc-nav-text">视口单位（viewport units）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#搭配vw和rem"><span class="toc-nav-text">搭配vw和rem</span></a></li></ol>
     
   </div>
 </aside>
@@ -221,7 +247,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/20/01-Vue-js如何全局安装，以及需要安装的模块/';
+    var url = 'http://yoursite.com/2019/01/17/css3使用vw和vh视口单位实现自适应/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -277,7 +303,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "01-Vue.js如何全局安装，以及需要安装的模块",
+        id: "css3使用vw和vh视口单位实现自适应",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
