@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Setcina blog">
+  <meta name="keyword" content="Setcina">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      12-react有状态组件和无状态组件的区别 | Setcina（目前还在更新以及完善中...）
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Setcina（目前还在更新以及完善中...）</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">文章归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">文章时间链</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">关于我</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">文章归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">文章时间链</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">关于我</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>12-react有状态组件和无状态组件的区别</h2>
+  <p class="post-date">2019-03-07</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>React中的组件主要分为无状态组件和有状态组件两类。</p>
+<p>无状态组件：无状态组件(Stateless Component)是最基础的组件形式，由于没有状态的影响所以就是纯静态展示的作用。一般来说，各种UI库里也是最开始会开发的组件类别。如按钮、标签、输入框等。它的基本组成结构就是属性（props）加上一个回调函数（return）。由于不涉及到状态的更新，所以这种组件的复用性也最强。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Header=<span class="function">(<span class="params">props</span>)=&gt;</span>&#123;  </span><br><span class="line">    <span class="keyword">return</span>( </span><br><span class="line">        &lt;div&gt;无状态组件&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>有状态组件：在无状态组件的基础上，如果组件内部包含状态（state）且状态随着事件或者外部的消息而发生改变的时候，这就构成了有状态组件（Stateful Component）。有状态组件通常会带有生命周期(lifecycle)，用以在不同的时刻触发状态的更新。这种组件也是通常在写业务逻辑中最经常使用到的，根据不同的业务场景组件的状态数量以及生命周期机制也不尽相同。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;Header/&gt;  <span class="comment">//也可以写成&lt;Header&gt;&lt;/Header&gt;</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么其实在react的有状态组件中，我们时常会看到constructor(props){ super(props) }</p>
+<p>我们一一来介绍一下这些到底是什么东西</p>
+<h4 id="constructor-——构造方法"><a href="#constructor-——构造方法" class="headerlink" title="constructor( ) ——构造方法"></a>constructor( ) ——构造方法</h4><p>这是ES6对类的默认方法，通过 new 命令生成对象实例时自动调用该方法。并且，该方法是类中必须有的，如果没有显示定义，则会默认添加空的constructor( )方法。</p>
+<h4 id="super-——继承"><a href="#super-——继承" class="headerlink" title="super( ) ——继承"></a>super( ) ——继承</h4><p> 在class方法中，继承是使用 extends 关键字来实现的。子类 必须 在 constructor( )调用 super( )方法，否则新建实例时会报错。</p>
+<p>报错的原因是：子类是没有自己的 this 对象的，它只能继承自父类的 this 对象，然后对其进行加工，而super( )就是将父类中的this对象继承给子类的。没有 super，子类就得不到 this 对象。</p>
+<p>所以在书写有状态组件的时候，正确的姿势应该是<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>() &#123;</span><br><span class="line">  <span class="keyword">super</span>();</span><br><span class="line">  <span class="keyword">this</span>.state = &#123;<span class="attr">searchStr</span>: <span class="string">''</span>&#125;;</span><br><span class="line">  <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么有一个问题来了，为什么官方的例子都会加上 props 作为参数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="keyword">super</span>(props);</span><br><span class="line">  <span class="keyword">this</span>.state = &#123;<span class="attr">searchStr</span>: <span class="string">''</span>&#125;;</span><br><span class="line">  <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="加与不加props的区别究竟在哪里呢？"><a href="#加与不加props的区别究竟在哪里呢？" class="headerlink" title="加与不加props的区别究竟在哪里呢？"></a>加与不加props的区别究竟在哪里呢？</h4><p>以下来自stackoverflow的解释：</p>
+<blockquote>
+<p>What’s the difference between “super()” and “super(props)” in React when using es6 classes?</p>
+</blockquote>
+<blockquote>
+<p>There is only one reason when one needs to pass props to super():</p>
+</blockquote>
+<blockquote>
+<p>When you want to access this.props in constructor.</p>
+</blockquote>
+<blockquote>
+<p>(Which is probably redundant since you already have a reference to it.)</p>
+</blockquote>
+<p>只有一个理由需要传递props作为super()的参数，那就是你需要在构造函数内使用this.props</p>
+<h4 id="如何使用有状态组件以及无状态组件进行开发"><a href="#如何使用有状态组件以及无状态组件进行开发" class="headerlink" title="如何使用有状态组件以及无状态组件进行开发"></a>如何使用有状态组件以及无状态组件进行开发</h4><p>其实上面有说到，无状态组件的view层的变更其实是依据父组件传过来的props进行更新的，它是一个纯静态展示的组件。</p>
+<p>而无状态组件存在这以下几个优势</p>
+<ul>
+<li>1.代码整洁、可读性高</li>
+<li>2.没有 this「由于使用的是箭头函数事件无需绑定」</li>
+<li>3.没有生命周期的方法和状态更新，性能更好</li>
+</ul>
+<p>虽然是这样，但是我们在开发过程中，也不可能全部使用无状态组件进行开发，而是使用有状态组件以及无状态组件相互嵌套开发</p>
+<p>一般情况下，我会把需要用到生命周期函数的业务，数据逻辑处理等放在父组件的有状态组件里，然后通过props的形式，把数据以及方法传递给子组件的无状态组件进行展示</p>
+<h4 id="React-基础知识：有状态组件和无状态组件"><a href="#React-基础知识：有状态组件和无状态组件" class="headerlink" title="React 基础知识：有状态组件和无状态组件"></a>React 基础知识：有状态组件和无状态组件</h4><p>注意：使用class关键字创建的组件，有自己的私有数据（this.state）和生命周期函数；</p>
+<p>注意：使用function创建的组件，只有props，没有自己的私有数据和生命周期函数；</p>
+<h4 id="什么情况下使用有状态组件？什么情况下使用有状态组件？"><a href="#什么情况下使用有状态组件？什么情况下使用有状态组件？" class="headerlink" title="什么情况下使用有状态组件？什么情况下使用有状态组件？"></a>什么情况下使用有状态组件？什么情况下使用有状态组件？</h4><p>如果一个组件需要有自己的私有数据，则推荐使用：class创建的有状态组件；</p>
+<p>如果一个组件不需要有自己的私有数据，则推荐使用：无状态组件；<br>React官方说：无状态组件，由于没有自己的state和生命周期函数，所以运行效率高</p>
+<p>有状态组件和无状态组件之间的本质区别就是：有无state属性和生命周期函数</p>
+<h4 id="组件中的props和state-data之间的区别"><a href="#组件中的props和state-data之间的区别" class="headerlink" title="组件中的props和state/data之间的区别"></a>组件中的props和state/data之间的区别</h4><p>props中的数据都是外界传递过来的。state/data中的数据，都是组件私有的。</p>
+<p>props中的数据都是只读的，不能重新赋值。state/data中的数据，都是可读可写的。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#React.js">
+    <span class="tag-code">React.js</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/02/11/05-如何使用redux实例/">
+        <span class="nav-arrow">← </span>
+        
+          05-如何使用redux实例
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!-- 
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+     -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <!-- <div id="comments"></div> -->
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#constructor-——构造方法"><span class="toc-nav-text">constructor( ) ——构造方法</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#super-——继承"><span class="toc-nav-text">super( ) ——继承</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#加与不加props的区别究竟在哪里呢？"><span class="toc-nav-text">加与不加props的区别究竟在哪里呢？</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如何使用有状态组件以及无状态组件进行开发"><span class="toc-nav-text">如何使用有状态组件以及无状态组件进行开发</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#React-基础知识：有状态组件和无状态组件"><span class="toc-nav-text">React 基础知识：有状态组件和无状态组件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#什么情况下使用有状态组件？什么情况下使用有状态组件？"><span class="toc-nav-text">什么情况下使用有状态组件？什么情况下使用有状态组件？</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#组件中的props和state-data之间的区别"><span class="toc-nav-text">组件中的props和state/data之间的区别</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2019/03/07/react有状态组件和无状态组件的区别/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "12-react有状态组件和无状态组件的区别",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Blogs by Setcina
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
