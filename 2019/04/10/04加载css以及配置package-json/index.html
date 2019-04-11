@@ -10,7 +10,7 @@
   
   <title>
     
-      03环境搭建以及配置 | Setcina（目前还在更新以及完善中...）
+      04加载css以及配置package.json | Setcina（目前还在更新以及完善中...）
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -126,7 +126,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>03环境搭建以及配置</h2>
+  <h2>04加载css以及配置package.json</h2>
   <p class="post-date">2019-04-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -135,24 +135,16 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h4 id="正式使用Webpack前的准备"><a href="#正式使用Webpack前的准备" class="headerlink" title="正式使用Webpack前的准备"></a>正式使用Webpack前的准备</h4><ul>
-<li>1.创建文件夹webpack-api-text</li>
-<li>2.在终端cd webpack-api-text  –&gt;  npm init <blockquote>
-<p>这样可以再文件夹中创建一个package.json文件，这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等等</p>
-</blockquote>
-</li>
-</ul>
-<p>输入这个命令后，终端会问你一系列诸如项目名称，项目描述，作者等信息，不过不用担心，如果你不准备在npm中发布你的模块，这些问题的答案都不重要，回车默认即可。</p>
-<h4 id="安装依赖的模块，我们现在可以把之前装的模块，webpack，webpack-cli以及webpack-dev-server安装好"><a href="#安装依赖的模块，我们现在可以把之前装的模块，webpack，webpack-cli以及webpack-dev-server安装好" class="headerlink" title="安装依赖的模块，我们现在可以把之前装的模块，webpack，webpack-cli以及webpack-dev-server安装好"></a>安装依赖的模块，我们现在可以把之前装的模块，webpack，webpack-cli以及webpack-dev-server安装好</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli webpack-dev-server</span><br></pre></td></tr></table></figure>
-<h4 id="webpack-course下面建立文件夹，config，dist，src，"><a href="#webpack-course下面建立文件夹，config，dist，src，" class="headerlink" title="webpack-course下面建立文件夹，config，dist，src，"></a>webpack-course下面建立文件夹，config，dist，src，</h4><ul>
-<li>1.config下c创建 webpack.dev.js</li>
-<li>2.dist下创建 index.html</li>
-<li>3.src下创建 main.js</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//在webpack.dev.js下写入以下代码</span><br><span class="line"></span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  //入口：有并且可以有多个</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: [&apos;./src/main.js&apos;]</span><br><span class="line">  &#125;,</span><br><span class="line">  //打包环境：开发&amp;生产</span><br><span class="line">  mode: &quot;development&quot;,</span><br><span class="line">  //出口，有且只能有一个</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name]-bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;../dist&apos;),</span><br><span class="line">    publicPath: &apos;/&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  //本地服务器</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: &apos;dist&apos;,</span><br><span class="line">    overlay: true,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在main.js中输入</span><br><span class="line">alert(&quot;Helo world!!!!&quot;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//在index.html页面上输入</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Webpack Sample Project&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&apos;root&apos;&gt;</span><br><span class="line">    &lt;h1&gt;Hello World&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script src=&quot;/main-bundle.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="在终端使用webpack-dev-server-–config-config-webpack-dev-js"><a href="#在终端使用webpack-dev-server-–config-config-webpack-dev-js" class="headerlink" title="在终端使用webpack-dev-server –config=config/webpack.dev.js"></a>在终端使用webpack-dev-server –config=config/webpack.dev.js</h4><p>这样就会开启web服务，我们从<br>locallhost:8080端口访问的话，就会出现Hello World以及弹窗Helo world!!!!</p>
+    <section class="markdown-content"><p>搭建网页，css是必不可少的，那么在webpack中如何使用css呢？</p>
+<p>首先我们在src文件夹下，建立main.css，然后，我们可以给我们之前建立的index.html里面的body以及h1标签，给点样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">body&#123; </span><br><span class="line">  color: red;</span><br><span class="line">  margin: 0;</span><br><span class="line">  background: #444;</span><br><span class="line">&#125;</span><br><span class="line">h1&#123; </span><br><span class="line">  height: 100vh;</span><br><span class="line">  display: flex;</span><br><span class="line">  color: white;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  font-size: 5em;</span><br><span class="line">  font-family: sans-serif;</span><br><span class="line">  text-shadow: 0 0 20px black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，我们修改一下main.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"./main.css"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// alert("Helo world!!!!")</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，我们可以使用webpack-dev-server –config=config/webpack.dev.js<br>这个时候，其实终端会给我们报一些错误，错误里面会说到缺少style-loader以及css-loader</p>
+<p>所以，我们需要安装依赖<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install style-loader css-loader</span><br></pre></td></tr></table></figure></p>
+<p>安装完之后，我们需要修改webpack.dev.js里面的一些配置<br>在devServer同级下面，我们需要添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          &#123; loader: &apos;style-loader&apos; &#125;,</span><br><span class="line">          &#123; loader: &apos;css-loader&apos; &#125;,</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是呢，每次都需要执行webpack-dev-server –config=config/webpack.dev.js，这实在是太长了。<br>我们可以打开package.json这个文件</p>
+<p>修改配置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"webpack-dev-server --config=config/webpack.dev.js"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack --config=config/webpack.dev.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="comment">//意思是，运行webpack-dev-server，它的运行配置是在config文件夹下面的webpack.dev.js</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，我们只需要再终端使用npm start就可以使用了</p>
 </section>
     <!-- Tags START -->
     
@@ -171,17 +163,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/04/09/02安装Webpack以及相应的模块/">
+      <a class="nav-left" href="/2019/04/10/03环境搭建以及配置/">
         <span class="nav-arrow">← </span>
         
-          02安装Webpack以及相应的模块
+          03环境搭建以及配置
         
       </a>
     
     
-      <a class="nav-right" href="/2019/04/10/04加载css以及配置package-json/">
+      <a class="nav-right" href="/2019/04/10/05加载HTML和image/">
         
-          04加载css以及配置package.json
+          05加载HTML和image
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -230,7 +222,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#正式使用Webpack前的准备"><span class="toc-nav-text">正式使用Webpack前的准备</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#安装依赖的模块，我们现在可以把之前装的模块，webpack，webpack-cli以及webpack-dev-server安装好"><span class="toc-nav-text">安装依赖的模块，我们现在可以把之前装的模块，webpack，webpack-cli以及webpack-dev-server安装好</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#webpack-course下面建立文件夹，config，dist，src，"><span class="toc-nav-text">webpack-course下面建立文件夹，config，dist，src，</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#在终端使用webpack-dev-server-–config-config-webpack-dev-js"><span class="toc-nav-text">在终端使用webpack-dev-server –config=config/webpack.dev.js</span></a></li></ol>
+      <ol class="nav">none</ol>
     
   </div>
 </aside>
@@ -240,7 +232,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2019/04/10/03环境搭建以及配置/';
+    var url = 'http://yoursite.com/2019/04/10/04加载css以及配置package-json/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -296,7 +288,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "03环境搭建以及配置",
+        id: "04加载css以及配置package.json",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
