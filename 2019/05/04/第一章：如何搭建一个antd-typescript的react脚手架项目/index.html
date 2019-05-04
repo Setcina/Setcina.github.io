@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Setcina blog">
+  <meta name="keyword" content="Setcina">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      第一章：如何搭建一个antd+typescript的react脚手架项目 | Setcina（目前还在更新以及完善中...）
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Setcina（目前还在更新以及完善中...）</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">文章归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">文章时间链</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">关于我</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">文章归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">文章时间链</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">关于我</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>第一章：如何搭建一个antd+typescript的react脚手架项目</h2>
+  <p class="post-date">2019-05-04</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>首先了解一下为什么需要手动搭建，其实我们在搭建普通的react脚手架以及ts-react脚手架的时候，按照react以及ts官网搭建，基本上只需要敲命令而已。但是也有一个问题，在react15版本之后，start以及build的关于webpack的配置，都在node_modual里面。直接使用当然没有问题，但关键是，你得知道webpack的配置究竟都是些什么，这就是另外一回事了。所以，这里主要是我面对我们工作业务的时候，搭建的react脚手架</p>
+<h3 id="1-创建一个初始项目"><a href="#1-创建一个初始项目" class="headerlink" title="1.创建一个初始项目"></a>1.创建一个初始项目</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir my-project</span><br><span class="line"></span><br><span class="line">cd my-project</span><br><span class="line"><span class="comment">//初始化项目</span></span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装一些需要的依赖包"><a href="#2-安装一些需要的依赖包" class="headerlink" title="2.安装一些需要的依赖包"></a>2.安装一些需要的依赖包</h3><h5 id="安装React框架以及Antd"><a href="#安装React框架以及Antd" class="headerlink" title="安装React框架以及Antd"></a>安装React框架以及Antd</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react react-dom antd --save</span><br></pre></td></tr></table></figure>
+<h5 id="安装-React-类型库-帮助-Typescript-识别-React-库中定义的类型"><a href="#安装-React-类型库-帮助-Typescript-识别-React-库中定义的类型" class="headerlink" title="安装 React 类型库 (帮助 Typescript 识别 React 库中定义的类型)"></a>安装 React 类型库 (帮助 Typescript 识别 React 库中定义的类型)</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样才可以使用ts或者ts文件编写jsx</span></span><br><span class="line">npm install @types/react @types/react-dom --save-dev</span><br></pre></td></tr></table></figure>
+<h5 id="安装-Typescript-和-ts-loader"><a href="#安装-Typescript-和-ts-loader" class="headerlink" title="安装 Typescript 和 ts-loader"></a>安装 Typescript 和 ts-loader</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 所有带有`.ts`或`.tsx`扩展名的文件都将由`ts-loader`处理</span></span><br><span class="line">npm install typescript ts-loader --save-dev</span><br></pre></td></tr></table></figure>
+<h5 id="安装-Webpack"><a href="#安装-Webpack" class="headerlink" title="安装 Webpack"></a>安装 Webpack</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack4把webpack以及webpack-cli分离，以便更好的维护</span></span><br><span class="line">npm install webpack webpack-cli webpack-dev-server webpack-merge --save-dev</span><br></pre></td></tr></table></figure>
+<h5 id="安装-Webpack-插件"><a href="#安装-Webpack-插件" class="headerlink" title="安装 Webpack 插件"></a>安装 Webpack 插件</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install source-map-loader html-webpack-plugin clean-webpack-plugin uglifyjs-webpack-plugin cross-env --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment">// Source map就是一个信息文件，里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// html-webpack-plugin为html文件中引入的外部资源如script、link动态添加每次compile后的hash，防止引用缓存的外部文件问题</span></span><br><span class="line"></span><br><span class="line">可以生成创建html入口文件，比如单页面可以生成一个html文件入口，配置N个html-webpack-plugin可以生成N个页面入口</span><br><span class="line"></span><br><span class="line"><span class="comment">// clean 先把 build或dist (就是放生产环境用的文件) 目录里的文件先清除干净，再生成新的。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// uglifyjs压缩js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// cross 跨平台设置NODE_ENV的问题</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-配置-webpack"><a href="#3-配置-webpack" class="headerlink" title="3.配置 webpack"></a>3.配置 webpack</h3><h5 id="定义配置中所需要用到的文件路径-config-paths-js"><a href="#定义配置中所需要用到的文件路径-config-paths-js" class="headerlink" title="定义配置中所需要用到的文件路径./config/paths.js"></a>定义配置中所需要用到的文件路径./config/paths.js</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> appDirectory = fs.realpathSync(process.cwd())</span><br><span class="line"><span class="keyword">const</span> resolveApp = <span class="function"><span class="params">relativePath</span> =&gt;</span> path.resolve(appDirectory, relativePath)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  appBuild: resolveApp(<span class="string">'build'</span>),</span><br><span class="line">  appPublic: resolveApp(<span class="string">'public'</span>),</span><br><span class="line">  appIndex: resolveApp(<span class="string">'src/index.tsx'</span>),</span><br><span class="line">  appHtml: resolveApp(<span class="string">'public/index.html'</span>),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="定义公用的-webpack-配置"><a href="#定义公用的-webpack-配置" class="headerlink" title="定义公用的 webpack 配置"></a>定义公用的 webpack 配置</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">在此目录建立./config/webpack/webpack.config.common.js</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = <span class="built_in">require</span>(<span class="string">'../paths'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.tsx'</span>, <span class="string">'.ts'</span>, <span class="string">'.js'</span>, <span class="string">'.json'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        enforce: <span class="string">"pre"</span>,</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        loader: <span class="string">"source-map-loader"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(ts|tsx)$/</span>,</span><br><span class="line">        loader: <span class="string">"ts-loader"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">  &lt;!--创建一个在内存中生成的html插件--&gt;</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: <span class="string">'React + Typescript Project'</span>,</span><br><span class="line">    </span><br><span class="line">      template: paths.appHtml,</span><br><span class="line">      inject: <span class="literal">false</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="定义-development-环境-webpack-配置-config-webpack-webpack-config-dev-js"><a href="#定义-development-环境-webpack-配置-config-webpack-webpack-config-dev-js" class="headerlink" title="定义 development 环境 webpack 配置./config/webpack/webpack.config.dev.js"></a>定义 development 环境 webpack 配置./config/webpack/webpack.config.dev.js</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = <span class="built_in">require</span>(<span class="string">'../paths'</span>)</span><br><span class="line"><span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.config.common'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge.smart(commonConfig, &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: paths.appIndex,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'static/js/[name]-bundle-[hash:8].js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</span><br><span class="line">    <span class="keyword">new</span> webpack.NamedModulesPlugin()</span><br><span class="line">  ],</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    <span class="comment">// 开启前端路径回路映射，子路径映射到根路径，由前端路由框架来解析</span></span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 关闭 Host 检查，同网段其他设备，可通过内网 IP 访问本机服务（需要配合 host: '0.0.0.0'）使用</span></span><br><span class="line">    disableHostCheck: <span class="literal">true</span>,</span><br><span class="line">    host: <span class="string">'0.0.0.0'</span>,</span><br><span class="line">    port: <span class="string">'8000'</span>,</span><br><span class="line">    inline: <span class="literal">true</span>,</span><br><span class="line">    hot: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 请求代理服务</span></span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        <span class="comment">// 这里改为项目后端 API 接口 Host</span></span><br><span class="line">        target: <span class="string">'http://backend.api.host'</span>,</span><br><span class="line">        <span class="comment">// 支持跨域调用</span></span><br><span class="line">        changeOrigin: <span class="literal">true</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="定义-production-环境-webpack-配置-config-webpack-webpack-config-prod-js"><a href="#定义-production-环境-webpack-配置-config-webpack-webpack-config-prod-js" class="headerlink" title="定义 production 环境 webpack 配置./config/webpack/webpack.config.prod.js"></a>定义 production 环境 webpack 配置./config/webpack/webpack.config.prod.js</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">"uglifyjs-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = <span class="built_in">require</span>(<span class="string">'../paths'</span>)</span><br><span class="line"><span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.config.common'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge.smart(commonConfig, &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  entry: paths.appIndex,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: paths.appBuild,</span><br><span class="line">    filename: <span class="string">'static/js/[name]-[hash:8].js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      <span class="comment">// 压缩 js</span></span><br><span class="line">      <span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line">        cache: <span class="literal">true</span>,</span><br><span class="line">        parallel: <span class="literal">true</span>,</span><br><span class="line">        sourceMap: <span class="literal">true</span></span><br><span class="line">      &#125;),</span><br><span class="line">    ],</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">      <span class="comment">// 切割代码块，提取为独立的 chunk 文件</span></span><br><span class="line">      chunks: <span class="string">'all'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 每次编译之前，清空上一次编译的文件</span></span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([paths.appBuild], &#123;</span><br><span class="line">      root: process.cwd()</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="4-配置-tsconfig"><a href="#4-配置-tsconfig" class="headerlink" title="4.配置 tsconfig"></a>4.配置 tsconfig</h3><p>./tsconfig.json<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="string">"allowSyntheticDefaultImports"</span>: <span class="literal">true</span>, </span><br><span class="line">    <span class="string">"jsx"</span>: <span class="string">"react"</span>,</span><br><span class="line">    <span class="string">"lib"</span>: [<span class="string">"es6"</span>, <span class="string">"dom"</span>],</span><br><span class="line">    <span class="string">"module"</span>: <span class="string">"esnext"</span>,</span><br><span class="line">    <span class="string">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">    <span class="string">"noImplicitAny"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"rootDir"</span>: <span class="string">"src"</span>,</span><br><span class="line">    <span class="string">"sourceMap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"strict"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"es5"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"exclude"</span>: [</span><br><span class="line">    <span class="string">"node_modules"</span>,</span><br><span class="line">    <span class="string">"build"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>allowSyntheticDefaultImports: 允许合成默认导出<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line">=&gt;</span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="5-创建入口文件"><a href="#5-创建入口文件" class="headerlink" title="5.创建入口文件"></a>5.创建入口文件</h3><h5 id="public-index-html"><a href="#public-index-html" class="headerlink" title="./public/index.html"></a>./public/index.html</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span><br><span class="line">    &lt;title&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">htmlWebpackPlugin.options.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line">    &lt;% <span class="keyword">for</span> (<span class="keyword">let</span> css <span class="keyword">in</span> htmlWebpackPlugin.files.css) &#123; %&gt;</span><br><span class="line">      &lt;link href=<span class="string">"/&lt;%=htmlWebpackPlugin.files.css[css] %&gt;"</span> rel=<span class="string">"stylesheet"</span>&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">  &lt;body&gt;</span></span><br><span class="line"><span class="regexp">    &lt;noscript&gt;</span></span><br><span class="line"><span class="regexp">      You need to enable JavaScript to run this app.</span></span><br><span class="line"><span class="regexp">    &lt;/</span>noscript&gt;</span><br><span class="line">    &lt;div id=<span class="string">"root"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &lt;% <span class="keyword">for</span> (<span class="keyword">let</span> chunk <span class="keyword">in</span> htmlWebpackPlugin.files.chunks) &#123; %&gt;</span><br><span class="line">      &lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"/&lt;%=htmlWebpackPlugin.files.chunks[chunk].entry %&gt;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="src-index-tsx"><a href="#src-index-tsx" class="headerlink" title="./src/index.tsx"></a>./src/index.tsx</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;Hello React&lt;<span class="regexp">/div&gt;,</span></span><br><span class="line"><span class="regexp">  document.getElementById('root'),</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-配置-package-启动脚本"><a href="#6-配置-package-启动脚本" class="headerlink" title="6.配置 package 启动脚本"></a>6.配置 package 启动脚本</h3><h5 id="package-json"><a href="#package-json" class="headerlink" title="./package.json"></a>./package.json</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"cross-env NODE_ENV=development webpack-dev-server --open --colors --config config/webpack/webpack.config.dev.js"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"cross-env NODE_ENV=production webpack --progress --colors --config config/webpack/webpack.config.prod.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-验收成果"><a href="#7-验收成果" class="headerlink" title="7.验收成果"></a>7.验收成果</h3><p>运行下面的命令，就可以在浏览器里看到 “Hello React” 欢迎页啦。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure></p>
+<h3 id="8-使用npm-build"><a href="#8-使用npm-build" class="headerlink" title="8.使用npm-build"></a>8.使用npm-build</h3><p>由于clean-webpack-plugin已经升级的关系，所有配置方面我们需要修改一下,打开webpack.config.prod.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    <span class="comment">// 每次编译之前，清空上一次编译的文件</span></span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([paths.appBuild], &#123;</span><br><span class="line">       root: process.cwd()</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">  改为</span><br><span class="line"> plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin()</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure></p>
+<h3 id="9-打包"><a href="#9-打包" class="headerlink" title="9.打包"></a>9.打包</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#REACT-CLI">
+    <span class="tag-code">REACT-CLI</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/04/21/10搭建react脚手架/">
+        <span class="nav-arrow">← </span>
+        
+          10搭建react脚手架
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/05/04/第二章：如何搭建一个antd-typescript的react脚手架项目/">
+        
+          第二章：如何搭建一个antd+typescript的react脚手架项目
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!-- 
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+     -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <!-- <div id="comments"></div> -->
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-创建一个初始项目"><span class="toc-nav-text">1.创建一个初始项目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-安装一些需要的依赖包"><span class="toc-nav-text">2.安装一些需要的依赖包</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装React框架以及Antd"><span class="toc-nav-text">安装React框架以及Antd</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装-React-类型库-帮助-Typescript-识别-React-库中定义的类型"><span class="toc-nav-text">安装 React 类型库 (帮助 Typescript 识别 React 库中定义的类型)</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装-Typescript-和-ts-loader"><span class="toc-nav-text">安装 Typescript 和 ts-loader</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装-Webpack"><span class="toc-nav-text">安装 Webpack</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装-Webpack-插件"><span class="toc-nav-text">安装 Webpack 插件</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-配置-webpack"><span class="toc-nav-text">3.配置 webpack</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#定义配置中所需要用到的文件路径-config-paths-js"><span class="toc-nav-text">定义配置中所需要用到的文件路径./config/paths.js</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#定义公用的-webpack-配置"><span class="toc-nav-text">定义公用的 webpack 配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#定义-development-环境-webpack-配置-config-webpack-webpack-config-dev-js"><span class="toc-nav-text">定义 development 环境 webpack 配置./config/webpack/webpack.config.dev.js</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#定义-production-环境-webpack-配置-config-webpack-webpack-config-prod-js"><span class="toc-nav-text">定义 production 环境 webpack 配置./config/webpack/webpack.config.prod.js</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-配置-tsconfig"><span class="toc-nav-text">4.配置 tsconfig</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#5-创建入口文件"><span class="toc-nav-text">5.创建入口文件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#public-index-html"><span class="toc-nav-text">./public/index.html</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#src-index-tsx"><span class="toc-nav-text">./src/index.tsx</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-配置-package-启动脚本"><span class="toc-nav-text">6.配置 package 启动脚本</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#package-json"><span class="toc-nav-text">./package.json</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-验收成果"><span class="toc-nav-text">7.验收成果</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#8-使用npm-build"><span class="toc-nav-text">8.使用npm-build</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#9-打包"><span class="toc-nav-text">9.打包</span></a></li>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2019/05/04/第一章：如何搭建一个antd-typescript的react脚手架项目/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "第一章：如何搭建一个antd+typescript的react脚手架项目",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Blogs by Setcina
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
