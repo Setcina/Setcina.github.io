@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Setcina blog">
+  <meta name="keyword" content="Setcina">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      跨域 | Setcina（目前还在更新以及完善中...）
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Setcina（目前还在更新以及完善中...）</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">文章归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">文章时间链</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">关于我</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">文章归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">文章时间链</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">关于我</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>跨域</h2>
+  <p class="post-date">2019-05-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="名词解析"><a href="#名词解析" class="headerlink" title="名词解析"></a>名词解析</h3><h4 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h4><p>浏览器的同源策略(<a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank" rel="noopener">Same-origin policy</a>)导致了在不同域名，协议，端口下不可访问到文件，对象或数据，这个时候，跨域就出现了。跨域问题的来源是因为浏览器的同源策略的问题，并不是后台服务器不允许前端调用，它是浏览器最基本和最核心的安全机制。</p>
+<h4 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h4><p>同源策略，它是由Netscape提出的一个著名的安全策略。现在所有支持JavaScript的浏览器都会使用这个策略。</p>
+<p>所谓同源是指，域名，协议，端口相同。当一个浏览器的两个tab页中分别打开来 百度和谷歌的页面<br>当浏览器的百度tab页执行一个脚本的时候会检查这个脚本是属于哪个页面的，<br>即检查是否同源，只有和百度同源的脚本才会被执行。 </p>
+<p>如果非同源，那么在请求数据时，浏览器会在控制台中报一个异常，提示拒绝访问。</p>
+<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，即请求发送了，服务器响应了，但是无法被浏览器接收。</p>
+<p>如果非同源，将会受到如下限制：</p>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
+<li>DOM 无法获得。</li>
+<li>AJAX 请求不能发送。</li>
+</ul>
+<h3 id="Jsop"><a href="#Jsop" class="headerlink" title="Jsop"></a>Jsop</h3><p>JSONP是JSON with padding（填充式JSON或参数式JSON）的简写，是应用JSON的一种办法，JSONP看起来和JSON差不多，只不过是被包含在函数调用中的JSON，就像这样:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123;<span class="string">"name"</span>: <span class="string">"Nicholas Bear"</span>&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>JSONP由两部分组成：回调函数和数据。回调函数是当浏览器接收到响应时调用的函数，回调函数名一般在请求中指定，数据就是回调函数的参数。如下就是典型的JSONP请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//somewhere-else/json/?callback=handleResponse</span></span><br></pre></td></tr></table></figure></p>
+<p>这里指定的回调函数就是handleResponse()</p>
+<p>JSONP实现原理是通过JS脚本动态生成一个script元素，为其src属性指定一个跨域URL，这里的script元素和img、link元素类似，都有能力不受限制地从其他域加载资源。它并不是官方的协议，而是一种hack手段，看一个简单的栗子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"got message"</span>, res);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>),</span><br><span class="line">    body = <span class="built_in">document</span>.body;</span><br><span class="line">script.src = <span class="string">"http://somewhere-else/json/?callback=handleResponse"</span>;</span><br><span class="line">body.insertBefore(script, body.firstChild);</span><br></pre></td></tr></table></figure></p>
+<p>JSONP实现跨域访问非常方便，简单易用，但是也有不足的地方：</p>
+<ul>
+<li><p>首先，从它的实现方式可以看出来，它是发起一个资源获取请求，是GET类型的，在日常开发中常用的请求类型还有POST，PUT，DELETE，而JSONP只能发起GET请求，是它的一大短板。</p>
+</li>
+<li><p>其次，JSONP是从其他域中加载代码并执行，如果其他域不安全，很有可能会在执行的代码中夹杂一些恶意代码，所以在使用JSONP时一定要保证被请求方它安全可靠。</p>
+</li>
+<li><p>另外，JSON和JSONP还有一个区别需要特别注意，JSONP请求返回来的不是JSON数据，而是一个JavaScript脚本，为了实现JSONP跨域，需要后台服务器配合。</p>
+</li>
+<li><p>最后，由于它的请求类型并不是XHR，就缺少了一些事件处理程序，要追踪JSONP请求是否失败并不容易，或者为JSONP请求增加定时器，超时就视为请求失败，接下来就再次发送请求或者做其他事情，但是每个用户的网络状况并不能保证，这样做也不是万全之策。</p>
+</li>
+</ul>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>CORS(Cross-origin resource sharing)跨域源资源共享，是W3C的一个工作草案， 定义了在跨域访问时，浏览器与服务器的沟通方式，具体实现为，使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定跨域请求或响应时应该成功，还是应该失败。</p>
+<p>比如说发起一个GET跨域请求，Content-type是text/plain,在发送跨域请求前，浏览器会为http头部加上一个额外的Origin头部，其中包含了页面的源信息(协议、域名和端口号)，这个额外的Origin决定了服务器是否响应该请求。一个Origin头部实例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Origin: https:<span class="comment">//www.somewhere-else.net</span></span><br></pre></td></tr></table></figure></p>
+<p>如果服务器认可该请求就会在响应头加上Access-Control-Allow-Origin标志字段,值可以是与请求头带来的Origin相同，如果该服务器上的是公共资源，值就是“*”。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: https:<span class="comment">//www.somewhere-else.net</span></span><br></pre></td></tr></table></figure></p>
+<p>如果发送的是带凭证的请求，响应头里却没有这个字段，那么浏览器就不会吧响应交给JS，意思是xhr获取到的responseText为空，status为0，这个时候onerror可以捕获到该错误.</p>
+<p>XHR对象在跨域时也是有限制的:</p>
+<ul>
+<li>不能使用setRequestHeader()来设置头部</li>
+<li>默认情况下无法发送cookie</li>
+<li>调用getAllResponseHeaders()方法总会返回空字符串</li>
+</ul>
+<p>CORS的实现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.onreadystateChange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt;= <span class="number">300</span> || xhr.status === <span class="number">304</span>) &#123;</span><br><span class="line">            alert(xhr.responseText);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            alert(<span class="string">"error "</span>, xhr.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">"get"</span>, <span class="string">"http://www.somewhere-else.com/page"</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure></p>
+<p>发送CORS请求和发送普通的xhr对象差别不大, 只需要在地址处写绝对地址即可.跨域所需要做的工作就交给浏览器,对于用户来说是透明.</p>
+<p>IE浏览器是用XDR(XDomainRequest)来实现CORS的,它和XHR相似,但是能提供能安全可靠的跨域通信:</p>
+<ul>
+<li>cookie不会随请求发送,也不会随响应返回</li>
+<li>只能设置请求头部信息中的Content-Type字段</li>
+<li>不能访问响应头部信息</li>
+<li>只支持GET和POST请求</li>
+</ul>
+<p>XDR对象和xhr的使用方法类型,也是创造一个XDomainRequest的实例,调用open()方法,再调用send()方法,但是与xhr对象的open()不同,XDR对象的open()方法只接受两个参数:请求的类型和URL,XDR发送的请求都是异步执行的。而且XDR对象无法访问status属性，所以在使用XDR时一定得通过onerror事件处理程序来捕获错误.</p>
+<h4 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h4><p>跨域请求在发送前,浏览器会检查这个请求是不是简单请求,简单请求满足下面两个条件:</p>
+<ul>
+<li>请求方式为HEAD,POST,GET</li>
+<li>HTTP头部信息包括但不超过以下字段<blockquote>
+<ul>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type(application/x-www-form-urlencode,multipart/form-data,text/plain)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>如果满足这些条件，浏览器就会在请求头部增加额外的Origin字段后发送跨域请求。</p>
+<p>响应头一般包含这些字段：</p>
+<ul>
+<li>Access-Control-Allow-Origin，如果浏览器校验通过，这个字段显示的是请求头的Origin值或者*</li>
+<li>Access-Control-Allow-Credential，值为布尔型，表示请求头是否可以携带cookie</li>
+<li>Access-Control-Expose-Headers。拓展的头部信息，浏览器将CORS响应交给JS后，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。</li>
+</ul>
+<p>注意，如果你想在请求中携带凭证，上面已经说过了，必须将xhr的withCrediential属性设置为true，但有时会报错，错误信息如下图：<br><img src="https://user-gold-cdn.xitu.io/2018/2/27/161d652d2969f8cd?imageslim" alt="image"></p>
+<p>错误提示里说如果想要在请求头中携带凭证，那么响应头中的Access-Control-Allow-Origin必须和请求头中的Origin一致，而不能是“*”，解决方法很简单，修改一下后端代码就可以了。</p>
+<h4 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h4><p>CORS通过一种叫做Preflighted Requestes预请求的透明服务器验证机制支持开发人员使用自定义的头部，GET和POST之外的方法，以及不同类型的主题内容。也就是说想要发送这种非简单的跨域请求以前会先发送一个询问请求（携带非简单请求部分信息）来询问服务器是否同意这次非简单请求，这种询问请求使用OPTIONS方法，发送以下头部：</p>
+<ul>
+<li>Origin：和简单请求相同</li>
+<li>Access-Control-Request-Method：请求自身使用的方法</li>
+<li>Access-Control-Request-Headers：这是一个可选头部字段，多个头部以逗号分开。</li>
+</ul>
+<p>发送这个请求以后，服务器可以决定是否允许这种类型的请求。服务器可以通过在响应头中携带以下头部与浏览器沟通：</p>
+<ul>
+<li>Access-Control-Allow-Origin：和简单请求相同</li>
+<li>Access-Control-Allow-Methods：允许的方法</li>
+<li>Access-Control-Allow-Headers: 允许的头部</li>
+<li>Access-Control-Max-Age: 预请求的有效期或者缓存存活时间(秒)</li>
+</ul>
+<p>比如说我现在发送了一个自定义头部字段f-headers1和f-headers2,方法为post的非简单请求,那么首先发送的预请求头部会包含以下信息:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Origin: http:<span class="comment">//www.yourhostname.com</span></span><br><span class="line">Access-Control-Request-Method: POST</span><br><span class="line">Access-Control-Request-Headers: f-headers1, f-headers2</span><br></pre></td></tr></table></figure></p>
+<p>如果服务器允许这样的非简单请求的跨域访问,返回的响应头会包含这些字段:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http:<span class="comment">//www.yourhostname.com</span></span><br><span class="line">Access-Control-Allow-Method: POST,GET,PUT,DELETE</span><br><span class="line">Access-Control-Allow-Headers: f-headers1, f-headers2</span><br><span class="line">Access-Control-Max-Age: <span class="number">3600</span></span><br></pre></td></tr></table></figure></p>
+<p>预请求结束后,结果将按照响应中指定的时间缓存起来,下次再发送这样的非简单请求之前就不会再发送询问请求.</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>上述几条都是解决跨域请求资源，但是如果想要获取非同源的cookie，LocalStorage或IndexDB怎么办。cookie是服务器在浏览器上写下的一小段认证信息，大小一般是4k，根据浏览器的不同，每个域允许种下的cookie数量也不同。cookie只有在同源的域下才能共享，但是我们可以通过修改document.domain来共享cookie，如下所示<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.abc.com</span></span><br><span class="line"><span class="built_in">document</span>.domain = <span class="string">"abc.com"</span>;</span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"name=bingo"</span>;</span><br><span class="line"><span class="comment">// b.abc.com</span></span><br><span class="line"><span class="built_in">document</span>.domain = <span class="string">"abc.com"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.cookie); <span class="comment">// "name=bingo"</span></span><br></pre></td></tr></table></figure></p>
+<p>但是这种方法前提是这两个网页一级域名相同，一级域名或者叫根域名相同是什么意思呢，比如说这里有个两个域名<a href="http://www.abc.com和www.f.abc.com它们的一级域名都是abc.com。二级域名就是增加了一级包括www，比如说www.zdt.com,netgo.ccdn.com,www.baidu.com等等.三级,四级域名同理" target="_blank" rel="noopener">www.abc.com和www.f.abc.com它们的一级域名都是abc.com。二级域名就是增加了一级包括www，比如说www.zdt.com,netgo.ccdn.com,www.baidu.com等等.三级,四级域名同理</a>.</p>
+<p>而且这种方法只适用于cookie和iframe.无法获取locastorage和IndexDB.</p>
+<h4 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h4><p>利用iframe解决跨域问题也是一种可取的办法.光是给iframe增加src获取其他页面的资源是不现实,必须借助一些特性实现hack手段.</p>
+<h4 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h4><p>两个iframe之间或者父窗口和子窗口之间。如上述例子里通过改变相同主域的document.domain可以跨域获取cookie，也可以获取对方的全局变量。这种方法和跨域获取cookie一样，只适合具有相同主域的跨域访问。实现原理为相同主域的网站设置相同的document.domain,浏览器就任务它们是同源的,这种方式比较简单，但也有安全问题，如果某一个网站被攻击后，另一个网站就会有安全漏洞</p>
+<h4 id="window-name"><a href="#window-name" class="headerlink" title="window.name"></a>window.name</h4><p>window.name,它具有更新了页面的location更新后，值依然不会更变的神奇特性,这让我们跨域访问信息提供了机会。在一个页面中创建一个不同域的iframe，这个iframe的js代码修改它window.name的值，然后再将它变为和父窗口同域的iframe，在父窗口中就可以通过iframe获得修改过后的window.name的值</p>
+<h4 id="location-hash"><a href="#location-hash" class="headerlink" title="location.hash"></a>location.hash</h4><p>location.hash又称片段标识符(Fragment Identitier),它是URL字符中#后面的部分,比如<a href="http://www.somewhere-else.com/a.html#fragment,这里的片段标识符就是fragment,URL中的片段标识符改变并不会引起页面刷新.利用location.hash实现跨域访问信息的原理是父窗口可以读写子窗口的URL,子窗口只能读写相同域父窗口的URL.这里想要实现跨域,不同域的子窗口就必须借助一个与父窗口同域的代理" target="_blank" rel="noopener">http://www.somewhere-else.com/a.html#fragment,这里的片段标识符就是fragment,URL中的片段标识符改变并不会引起页面刷新.利用location.hash实现跨域访问信息的原理是父窗口可以读写子窗口的URL,子窗口只能读写相同域父窗口的URL.这里想要实现跨域,不同域的子窗口就必须借助一个与父窗口同域的代理</a>. 举个栗子</p>
+<p>a.abc.com/index.html(a)下有一个src为smg.com/index.html(b)的iframe.</p>
+<p>1.a页面给b页面发送数据</p>
+<ul>
+<li>a修改b的src为smg.com/index.html#data</li>
+<li>b页面访问自己的location.hash即可拿到数据</li>
+</ul>
+<p>2.b页面给a页面发送数据,b由于不能修改不同域父窗口的URL,所以b页面需要动态创建一个和父窗口同域的iframe来做代理.</p>
+<ul>
+<li>b页面创建一个src为a.abc.com/proxy.html#data的子窗口</li>
+<li>这个proxy页面通过onhashchange(兼容情况)事件监听自己href的变化,事件触发后通过修改a页面的hash来达到传递数据的功能</li>
+<li>a页面访问自己的location.hash即可拿到数据</li>
+</ul>
+<h4 id="postMessage"><a href="#postMessage" class="headerlink" title="postMessage"></a>postMessage</h4><p>不管是iframe和location.hash、document.domain还是window.name都是属于非官方的跨越方法，下面要介绍的就是一个官方方法—postMessage,它是HTML5新增的一个跨文档通信API，它实现了即使不同域也可以跨窗口直接通信的功能，而且只要使用得当，这种方法就很安全。</p>
+<p>调用对象为父窗口或者的window对象、window.open()的返回值或者是iframe的contentWindow这个属性，这个方法接受两个参数，第一个是要发送的消息，第二个参数是指定接受消息的接收源，可以是*表示所有窗口都可以接收到消息或者是一个url，但只有在协议，域名和端口号都相同才会接收到消息。<br>添加以下代码即可接收<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// For Chrome, the origin property is in the event.originalEvent</span></span><br><span class="line">  <span class="comment">// object.</span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin || event.originalEvent.origin; </span><br><span class="line">  <span class="keyword">if</span> (origin !== <span class="string">"http://example.org:8080"</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>复制代码事件event对象有三个属性</p>
+<ul>
+<li>data,发送过来的信息</li>
+<li>origin,发送发窗口的origin</li>
+<li>source,对发送消息的窗口对象的引用; 你可以使用此来在具有不同origin的两个窗口之间建立双向通信</li>
+</ul>
+<p>文档来源于<br><a href="https://juejin.im/post/5a94c37c5188257a6049bd29" target="_blank" rel="noopener">https://juejin.im/post/5a94c37c5188257a6049bd29</a></p>
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/05/04/第二章：如何搭建一个antd-typescript的react脚手架项目/">
+        <span class="nav-arrow">← </span>
+        
+          第二章：如何搭建一个antd+typescript的react脚手架项目
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!-- 
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+     -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <!-- <div id="comments"></div> -->
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#名词解析"><span class="toc-nav-text">名词解析</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#跨域"><span class="toc-nav-text">跨域</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#同源策略"><span class="toc-nav-text">同源策略</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Jsop"><span class="toc-nav-text">Jsop</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#CORS"><span class="toc-nav-text">CORS</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#简单请求"><span class="toc-nav-text">简单请求</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#非简单请求"><span class="toc-nav-text">非简单请求</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Cookie"><span class="toc-nav-text">Cookie</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#iframe"><span class="toc-nav-text">iframe</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#document-domain"><span class="toc-nav-text">document.domain</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#window-name"><span class="toc-nav-text">window.name</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#location-hash"><span class="toc-nav-text">location.hash</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#postMessage"><span class="toc-nav-text">postMessage</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2019/05/12/跨域/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "跨域",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Blogs by Setcina
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
