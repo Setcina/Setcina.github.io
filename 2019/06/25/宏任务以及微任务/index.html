@@ -135,8 +135,33 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"></section>
+    <section class="markdown-content"><p>先以一道面试题做引子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        i==<span class="number">9</span>&amp;&amp;a();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>正确输出顺序为：2，3，5，4，1；</p>
+<h3 id="1-javascript事件循环"><a href="#1-javascript事件循环" class="headerlink" title="1. javascript事件循环"></a>1. javascript事件循环</h3><p>首先，你要知道javascript是单线程语言。js任务需要排队顺序执行，如果一个任务耗时过长，后边一个任务也的等着，但是，假如我们需要浏览新闻，但新闻包含的超清图片加载很慢，总不能网页一直卡着直到图片完全出来，所以将任务设计成了两类：</p>
+<ul>
+<li>同步任务与</li>
+<li>异步任务</li>
+</ul>
+<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，像页面骨架和页面元素的渲染，而加载图片、音乐之类的任务就是异步任务，看一下下边导图：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/308891/1561646012728-1a031c69-a7a6-4015-b0e6-59f0aee1b6ab.png" alt="图片01"></p>
+<p>如图：</p>
+<p>同步和异步任务分别进入不同的执行“场所”，同步进入主线程，异步进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，回去了Event Queue读取对应的函数，进入主线程。</p>
+<p>上述过程会不断重复，也就是常说的Event Loop（事件循环）。</p>
+<p>但是，JS异步还有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入event queue，然后再执行微任务，将微任务放入eventqueue，但是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回调函数，然后再从宏任务的queue拿宏任务的回调函数，如下图：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/308891/1561646025023-4dfe2853-4105-4188-9caf-bbffad54ff96.png" alt="图片02"><br>宏任务一般包括：整体代码script，setTimeout，setInterval。</p>
+<p>微任务：Promise，process.nextTick</p>
+<p>本来来自：[<a href="https://blog.csdn.net/RedaTao/article/details/81504532]" target="_blank" rel="noopener">https://blog.csdn.net/RedaTao/article/details/81504532]</a></p>
+</section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#javascript">
+    <span class="tag-code">javascript</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -196,7 +221,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="nav">none</ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-javascript事件循环"><span class="toc-nav-text">1. javascript事件循环</span></a></li></ol>
     
   </div>
 </aside>
