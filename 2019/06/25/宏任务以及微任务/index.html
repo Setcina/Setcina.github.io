@@ -143,14 +143,18 @@
 <li>同步任务与</li>
 <li>异步任务</li>
 </ul>
-<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，像页面骨架和页面元素的渲染，而加载图片、音乐之类的任务就是异步任务，看一下下边导图：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/308891/1561646012728-1a031c69-a7a6-4015-b0e6-59f0aee1b6ab.png?x-oss-process=image/resize,w_746" alt="图片01"></p>
+<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，像页面骨架和页面元素的渲染，而加载图片、音乐之类的任务就是异步任务，看一下下边导图：<br><img src="/2019/06/25/宏任务以及微任务/hwrw01.png" class="myimage"></p>
+<p></p>
+
+
 <p>如图：</p>
 <p>同步和异步任务分别进入不同的执行“场所”，同步进入主线程，异步进入Event Table并注册函数。当指定的事情完成时，Event Table会将这个函数移入Event Queue。主线程内的任务执行完毕为空，回去了Event Queue读取对应的函数，进入主线程。</p>
 <p>上述过程会不断重复，也就是常说的Event Loop（事件循环）。</p>
 <p>但是，JS异步还有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入event queue，然后再执行微任务，将微任务放入eventqueue，但是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回调函数，然后再从宏任务的queue拿宏任务的回调函数，如下图：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/308891/1561646025023-4dfe2853-4105-4188-9caf-bbffad54ff96.png?x-oss-process=image/resize,w_746" alt="图片02"><br>宏任务一般包括：整体代码script，setTimeout，setInterval。</p>
+<p><img src="/2019/06/25/宏任务以及微任务/hwrw02.png" class="myimage"></p>
+<p></p><p></p><br>宏任务一般包括：整体代码script，setTimeout，setInterval。<p></p>
 <p>微任务：Promise，process.nextTick</p>
-<p>本来来自：[<a href="https://blog.csdn.net/RedaTao/article/details/81504532]" target="_blank" rel="noopener">https://blog.csdn.net/RedaTao/article/details/81504532]</a></p>
+<p>本文来自：[<a href="https://blog.csdn.net/RedaTao/article/details/81504532]" target="_blank" rel="noopener">https://blog.csdn.net/RedaTao/article/details/81504532]</a></p>
 </section>
     <!-- Tags START -->
     
