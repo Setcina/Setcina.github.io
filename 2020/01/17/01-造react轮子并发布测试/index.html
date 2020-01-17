@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Setcina blog">
+  <meta name="keyword" content="Setcina">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      01-造react轮子并发布测试 | Setcina（目前还在更新以及完善中...）
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Setcina（目前还在更新以及完善中...）</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">文章归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">文章时间链</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">关于我</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">文章归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">文章时间链</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">关于我</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>01-造react轮子并发布测试</h2>
+  <p class="post-date">2020-01-17</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h4 id="什么叫做造轮子"><a href="#什么叫做造轮子" class="headerlink" title="什么叫做造轮子"></a>什么叫做造轮子</h4><p>看现在的软件发展趋势，越来越多的基础服务能够“开箱即用”、“拿来用就好”，越来越多的新软件可以通过组合已有类库、服务以搭积木的方式完成。这是趋势，将来不懂开发语言的人都可以通过利用现有软件组件快速构建出能解决实际问题的软件产品。</p>
+<p>在这种趋势下，软件（服务）就慢慢演化为两极：</p>
+<p>满足终端用户的应用类产品<br>解决软件产品通用问题的基础服务（组件）<br>比如你在自己的App中需要即时通信功能，完全可以使用融云、环信、网易云信等服务快速集成。</p>
+<p>比如你想在自己的App中添加支付功能，完全可以使用Ping++或Pay++来解决诸多支付渠道的集成问题。</p>
+<p>比如你想添加分享功能，ShareSDK、友盟SDK可以节省你很多时间。</p>
+<p>比如你想做跨平台的游戏，使用Cocos2d-x远比自己在Android、iOS上从底层从OpenGL ES干起要高效得多。</p>
+<p>比如你想让你的网站支持更多用户更多并发，能够快速部署、迁移、规模复制，那完全可以借助阿里云、AWS、Azure等而没必要自己搞。</p>
+<p>比如你想推送消息给用户，就可以用腾讯信鸽、极光、个推、百度云推送、友盟等。</p>
+<p>……</p>
+<p>类似的场景很多很多。这种趋势使得一部分厂商集中精力开发基础服务（组件），一部分企业集中精力解决用户需求。对基础服务（组件）厂商来讲，他通过解决更复杂的基础问题为其他厂商带来便利而盈利。对终端软件产品企业来讲，他通过解决用户问题给用户创造价值而盈利，从理论上讲，只要其产品从用户端或第三方获取的价值大于支出给基础服务厂商的价值，生意就可以做下去。</p>
+<h4 id="如何使用react造轮子"><a href="#如何使用react造轮子" class="headerlink" title="如何使用react造轮子"></a>如何使用react造轮子</h4><p>首先要申明一下，我为什么是使用react，而不是用vue，或者原生的js去造轮子。主要是由于我工作的环境导致的，目前技术找比较偏向于react，并且在工作中，虽然可以经常使用一些类库来解决一些项目上的问题。但我考虑到，如果在不同项目，时长需要用到一个公共类库，而这个类库的业务又是相对独立的，那么将其抽离出来，成为一个单独的轮子去使用，明显要比复制黏贴更为合适。</p>
+<p>先设想一下我们需要做些什么：</p>
+<ul>
+<li><ol>
+<li>使用webpack构建工具搭建脚手架</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>安装项目打包需要的东西，一些常用的loader作为编译js或者css或者文件等</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>将webpack的生产环境以及开发环境分开，以便我们用来预览以及推送到npm上</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>本地预览以及链接到项目中使用</li>
+</ol>
+</li>
+</ul>
+<h4 id="1-构建一个基于webapck的脚手架（只简单构建，可依照自己的需求，进行优化处理）"><a href="#1-构建一个基于webapck的脚手架（只简单构建，可依照自己的需求，进行优化处理）" class="headerlink" title="1.构建一个基于webapck的脚手架（只简单构建，可依照自己的需求，进行优化处理）"></a>1.构建一个基于webapck的脚手架（只简单构建，可依照自己的需求，进行优化处理）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">打开终端，在自己喜欢的文件目录下按照以下步骤输入命令</span><br><span class="line">1. mkdir reactDemoToNpm</span><br><span class="line"></span><br><span class="line">2. cd reactDemoToNpm</span><br><span class="line"></span><br><span class="line">3. npm init</span><br><span class="line">一直回车就可以了</span><br></pre></td></tr></table></figure>
+<p>打开我们的项目目录结构，我们可以在package.json看到一些基本信息<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"reactdemotonpm"</span>, <span class="comment">// 项目名称</span></span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,  <span class="comment">// 版本</span></span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>, <span class="comment">// 项目描述</span></span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>, <span class="comment">// 项目入口</span></span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>, <span class="comment">// 作者</span></span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span>, <span class="comment">// 开源许可证</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-安装我们开发所需要的一些依赖项"><a href="#2-安装我们开发所需要的一些依赖项" class="headerlink" title="2.安装我们开发所需要的一些依赖项"></a>2.安装我们开发所需要的一些依赖项</h4><h5 id="首先安装webapck"><a href="#首先安装webapck" class="headerlink" title="首先安装webapck"></a>首先安装webapck</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -D webpack webpack-cli webpack-dev-server webpack-merge cross-env</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack-merge 用来把开发和生产的配置分开</span></span><br><span class="line"><span class="comment">// cross-env 用来把开发和生产环境</span></span><br></pre></td></tr></table></figure>
+<h5 id="安装babel用来处理jsx文件"><a href="#安装babel用来处理jsx文件" class="headerlink" title="安装babel用来处理jsx文件"></a>安装babel用来处理jsx文件</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install -D babel-loader @babel/core @babel/preset-env react react-dom </span><br><span class="line"></span><br><span class="line">并且新建.babelrc 文件,并输入</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"presets"</span>: [</span><br><span class="line">        <span class="string">"@babel/react"</span>,</span><br><span class="line">        <span class="string">"@babel/env"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="安装loader用来处理jsx文件"><a href="#安装loader用来处理jsx文件" class="headerlink" title="安装loader用来处理jsx文件"></a>安装loader用来处理jsx文件</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D css-loader style-loader react-hot-loader</span><br></pre></td></tr></table></figure>
+<h5 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D html-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin</span><br></pre></td></tr></table></figure>
+<h4 id="3-配置webpack"><a href="#3-配置webpack" class="headerlink" title="3.配置webpack"></a>3.配置webpack</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">新建文件夹src，然后新建一个index.js文件，输入</span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./styles.css'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;h1&gt;Hello world&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default Hello;</span></span><br><span class="line"><span class="regexp">======================</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">index.js文件同目录下新建styles.css，输入</span></span><br><span class="line"><span class="regexp">h1 &#123;</span></span><br><span class="line"><span class="regexp">    color: red;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">======================</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">index.js文件同目录下新建indexBuild.js，输入</span></span><br><span class="line"><span class="regexp">import Hello from './</span>Hello<span class="string">';</span></span><br><span class="line"><span class="string">export default Hello;</span></span><br><span class="line"><span class="string">======================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">index.js文件同目录下新建indexStart.js，输入</span></span><br><span class="line"><span class="string">import React from '</span>react<span class="string">';</span></span><br><span class="line"><span class="string">import ReactDOM from '</span>react-dom<span class="string">';</span></span><br><span class="line"><span class="string">import Hello from '</span>./Hello<span class="string">';</span></span><br><span class="line"><span class="string">import &#123; AppContainer &#125; from '</span>react-hot-loader<span class="string">'; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">const render = Component =&gt; &#123;</span></span><br><span class="line"><span class="string">  ReactDOM.render(</span></span><br><span class="line"><span class="string">    &lt;AppContainer&gt;</span></span><br><span class="line"><span class="string">      &lt;Component /&gt;</span></span><br><span class="line"><span class="string">    &lt;/AppContainer&gt;,</span></span><br><span class="line"><span class="string">    document.getElementById('</span>app<span class="string">')</span></span><br><span class="line"><span class="string">  )</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">render(Hello)</span></span><br><span class="line"><span class="string">// Webpack Hot Module Replacement API</span></span><br><span class="line"><span class="string">if (module.hot) &#123;</span></span><br><span class="line"><span class="string">  module.hot.accept('</span>./Hello<span class="string">', () =&gt; &#123;</span></span><br><span class="line"><span class="string">    const NextApp = require('</span>./Hello<span class="string">').default</span></span><br><span class="line"><span class="string">    render(NextApp);</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">======================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">在根目录新建文件 webpack.commom.js  webapck.dev.js webpack.prod.js</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// webpack.commom.js </span></span><br><span class="line"><span class="string">const webpack = require('</span>webpack<span class="string">');</span></span><br><span class="line"><span class="string">const path = require('</span>path<span class="string">');</span></span><br><span class="line"><span class="string">const HtmlWebpackPlugin = require('</span>html-webpack-plugin<span class="string">');</span></span><br><span class="line"><span class="string">const UglifyJSPlugin = require('</span>uglifyjs-webpack-plugin<span class="string">');</span></span><br><span class="line"><span class="string">const &#123; CleanWebpackPlugin &#125; = require('</span>clean-webpack-plugin<span class="string">');</span></span><br><span class="line"><span class="string">const env = process.env.NODE_ENV;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 开发环境的plugins</span></span><br><span class="line"><span class="string">const pluginsDev = [</span></span><br><span class="line"><span class="string">  new CleanWebpackPlugin(),</span></span><br><span class="line"><span class="string">  new HtmlWebpackPlugin(&#123;</span></span><br><span class="line"><span class="string">    title: '</span>Output Management<span class="string">',</span></span><br><span class="line"><span class="string">    template: '</span>index.html<span class="string">'</span></span><br><span class="line"><span class="string">  &#125;),</span></span><br><span class="line"><span class="string">  // 热模块更新</span></span><br><span class="line"><span class="string">  new webpack.NamedModulesPlugin(),</span></span><br><span class="line"><span class="string">  new webpack.HotModuleReplacementPlugin(),</span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 生产环境的plugins</span></span><br><span class="line"><span class="string">const pluginsProd = [</span></span><br><span class="line"><span class="string">  new CleanWebpackPlugin(),</span></span><br><span class="line"><span class="string">  new UglifyJSPlugin(),</span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">module.exports = &#123;</span></span><br><span class="line"><span class="string">  output: &#123;</span></span><br><span class="line"><span class="string">    path: path.resolve(__dirname, '</span>dist<span class="string">'),</span></span><br><span class="line"><span class="string">    filename: "index.js",</span></span><br><span class="line"><span class="string">    // libraryTarget: '</span>commonjs2<span class="string">'</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  module: &#123;</span></span><br><span class="line"><span class="string">    rules: [</span></span><br><span class="line"><span class="string">      &#123;</span></span><br><span class="line"><span class="string">        test: /\.js$/,</span></span><br><span class="line"><span class="string">        exclude: /node_modules/,</span></span><br><span class="line"><span class="string">        loader: '</span>babel-loader<span class="string">' </span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      &#123;</span></span><br><span class="line"><span class="string">        test: /\.css$/, </span></span><br><span class="line"><span class="string">        use: [</span></span><br><span class="line"><span class="string">          '</span>style-loader<span class="string">',</span></span><br><span class="line"><span class="string">          '</span>css-loader<span class="string">',</span></span><br><span class="line"><span class="string">        ]</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">    ]</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  plugins: env === '</span>production<span class="string">' ? pluginsProd : pluginsDev,</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">======================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// webpack.dev.js</span></span><br><span class="line"><span class="string">const merge = require('</span>webpack-merge<span class="string">');</span></span><br><span class="line"><span class="string">const common = require('</span>./webpack.common.js<span class="string">');</span></span><br><span class="line"><span class="string">const path = require('</span>path<span class="string">');</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">module.exports = merge(common, &#123;</span></span><br><span class="line"><span class="string">  entry: &#123;</span></span><br><span class="line"><span class="string">    app: [</span></span><br><span class="line"><span class="string">      '</span>webpack-dev-server/client?path=http:<span class="comment">//localhost:8989/__webpack_hmr',</span></span><br><span class="line">      <span class="string">'webpack/hot/only-dev-server'</span>,</span><br><span class="line">      path.resolve(__dirname, <span class="string">'src/indexStart.js'</span>),</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'inline-source-map'</span>,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">'./dist'</span>,</span><br><span class="line">    port: <span class="number">8989</span>,</span><br><span class="line">    hot: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">======================</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack.prod.js</span></span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> common = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(common, &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: [</span><br><span class="line">      path.resolve(__dirname, <span class="string">'src/indexBuild.js'</span>),</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'lib'</span>),</span><br><span class="line">    filename: <span class="string">"index.js"</span>,</span><br><span class="line">    <span class="comment">// npm常用的js格式</span></span><br><span class="line">    libraryTarget: <span class="string">'commonjs2'</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="4-修改package-json"><a href="#4-修改package-json" class="headerlink" title="4.修改package.json"></a>4.修改package.json</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"name"</span>: <span class="string">"reactdemotonpm01"</span>,</span><br><span class="line"> <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line"> <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line"> <span class="string">"main"</span>: <span class="string">"lib/index.js"</span>,</span><br><span class="line"> <span class="string">"scripts"</span>: &#123;</span><br><span class="line">   <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">   <span class="string">"start"</span>: <span class="string">"cross-env NODE_ENV=development webpack-dev-server --hotOnly --config webpack.dev.js"</span>,</span><br><span class="line">   <span class="string">"build"</span>: <span class="string">"cross-env NODE_ENV=production webpack --config webpack.prod.js"</span></span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line"> <span class="string">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> 将对象main设置为lib/index.js意味着发布npm模块之后，会默认在lib/index.js下面查找我们发布的react模块</span><br></pre></td></tr></table></figure>
+<h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><p>首先，其实我不应该在这里使用多个模块，尤其是我分开了dev-server以及生产环境。其实，我们发布的时候，应该就只有生产环境的，但是我考虑到我们需要在本地做开发调试，所以把dev-server的webpack设置也加入进来了。我们在造轮子的时候，也可以这样做，但是在发布的时候，应该去除这部分的代码</p>
+<h4 id="5-如何测试"><a href="#5-如何测试" class="headerlink" title="5.如何测试"></a>5.如何测试</h4><p>首先我们确定npm run start是可以在本地进行调试的，那么，如何在其他项目进行调试呢？？？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">首先打包npm run build </span><br><span class="line"></span><br><span class="line">执行npm link 之后，会输出以下内容，这个时候表示已经把reactdemotonpm这个模块，发布到你本机的node模块中。</span><br><span class="line"></span><br><span class="line">/Users/xingexiaer/.nvm/versions/node/v9<span class="number">.6</span><span class="number">.0</span>/lib/node_modules/reactdemotonpm -&gt; <span class="regexp">/Users/</span>xingexiaer/Desktop/SetcinaProjectDemo/reactDemoToNpm</span><br></pre></td></tr></table></figure>
+<h4 id="6-项目测试"><a href="#6-项目测试" class="headerlink" title="6.项目测试"></a>6.项目测试</h4><p>讲道理，上面的操作其实已经把我们的reactdemotonpm轮子公开到本地的node_module中，我们已经可以使用 <hello> 愉快的使用了。但是，如果出现找不到模块的情况，我们可以执行 npm link reactdemotonpm 进行连接</hello></p>
+<h4 id="7-推送到npm"><a href="#7-推送到npm" class="headerlink" title="7.推送到npm"></a>7.推送到npm</h4><ol>
+<li><p>首先去npm官网注册账号</p>
+</li>
+<li><p>打开reactdemotonpm项目，将我之前提到的，dev-server得配置去除</p>
+</li>
+<li><p>npm login 输入用户名和密码（最好要验证邮箱，在注册的时候）</p>
+</li>
+<li><p>npm publish</p>
+</li>
+</ol>
+<h4 id="8-项目中映入"><a href="#8-项目中映入" class="headerlink" title="8.项目中映入"></a>8.项目中映入</h4><p>最后的最后，在自己的项目中 npm install –save <em>**</em>(对应的npm包名)，就可以正常使用了。</p>
+<p>后面会把代码提到github，请关注以下链接以及博客系统的更新</p>
+<p>下面是广告时间:</p>
+<p><a href="https://github.com/Setcina/reactDemoToNpm" target="_blank" rel="noopener">项目地址</a></p>
+<p><a href="https://github.com/Setcina" target="_blank" rel="noopener">我的github</a></p>
+<p><a href="setcina.github.io">我的博客</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#NPM" >
+    <span class="tag-code">NPM</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/01/17/01-display-flex/">
+        <span class="nav-arrow">← </span>
+        
+          01-display:flex
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!-- 
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+     -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <!-- <div id="comments"></div> -->
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#什么叫做造轮子"><span class="toc-nav-text">什么叫做造轮子</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如何使用react造轮子"><span class="toc-nav-text">如何使用react造轮子</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-构建一个基于webapck的脚手架（只简单构建，可依照自己的需求，进行优化处理）"><span class="toc-nav-text">1.构建一个基于webapck的脚手架（只简单构建，可依照自己的需求，进行优化处理）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-安装我们开发所需要的一些依赖项"><span class="toc-nav-text">2.安装我们开发所需要的一些依赖项</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#首先安装webapck"><span class="toc-nav-text">首先安装webapck</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装babel用来处理jsx文件"><span class="toc-nav-text">安装babel用来处理jsx文件</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装loader用来处理jsx文件"><span class="toc-nav-text">安装loader用来处理jsx文件</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安装插件"><span class="toc-nav-text">安装插件</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-配置webpack"><span class="toc-nav-text">3.配置webpack</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-修改package-json"><span class="toc-nav-text">4.修改package.json</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#声明"><span class="toc-nav-text">声明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5-如何测试"><span class="toc-nav-text">5.如何测试</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6-项目测试"><span class="toc-nav-text">6.项目测试</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#7-推送到npm"><span class="toc-nav-text">7.推送到npm</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#8-项目中映入"><span class="toc-nav-text">8.项目中映入</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/01/17/01-造react轮子并发布测试/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "01-造react轮子并发布测试",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Blogs by Setcina
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

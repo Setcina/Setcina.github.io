@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head><meta name="generator" content="Hexo 3.8.0">
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="Setcina blog">
@@ -141,7 +141,10 @@
 <p>安装依赖 babel-plugin-async-to-promises<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-plugin-<span class="keyword">async</span>-to-promises</span><br></pre></td></tr></table></figure></p>
 <p>修改babelrc里面的那内容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="string">"transform-es2015-arrow-functions"</span>,</span><br><span class="line">    <span class="string">"async-to-promises"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>终端输入  babel src/main.js</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/308891/1554429239542-37070d34-6737-4d50-a2d0-1840e2c06f04.png" alt="image"></p>
+<p><img src="/2019/04/21/07polyfill、preset、transform/webpack07-01.png" class="myimage"></p>
+<p></p>
+
+
 <p>解释一：<br>Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。<br>举例来说，ES6在Array对象上新增了Array.from方法。Babel就不会转码这个方法。如果想让这个方法运行，必须使用babel-polyfill，为当前环境提供一个垫片。</p>
 <p>解释二：<br>提示：polyfill指的是“用于实现浏览器不支持原生功能的代码”，比如，现代浏览器应该支持fetch函数，对于不支持的浏览器，网页中引入对应fetch的polyfill后，这个polyfill就给全局的window对象上增加一个fetch函数，让这个网页中的JavaScript可以直接使用fetch函数了，就好像浏览器本来就支持fetch一样。</p>
 <p>指定类型，例如promise，polyfill可以再转化之前，帮我们预编译好<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-polyfill</span><br></pre></td></tr></table></figure></p>
@@ -152,7 +155,9 @@
 <p>修改babelrc里面的内容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// "plugins": [</span></span><br><span class="line">  <span class="comment">//   "transform-es2015-arrow-functions",</span></span><br><span class="line">  <span class="comment">//   "async-to-promises"</span></span><br><span class="line">  <span class="comment">// ]</span></span><br><span class="line">  <span class="string">"presets"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"debug"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
 <p>我们可以看到，它会自动给我们添加一些配置</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/308891/1554429299655-ad070f1f-ea71-4c21-8dd1-9bd4ae92728c.png" alt="image"></p>
+<p><img src="/2019/04/21/07polyfill、preset、transform/webpack07-02.png" class="myimage"></p>
+<p></p>
+
 <p>然后，我们可以继续添加一些配置</p>
 <p>npm install babel-plugin-transform-runtime<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//解决promise对环境变量的污染以及解析最近的代码</span></span><br><span class="line">  <span class="string">"plugins"</span>:[ </span><br><span class="line">    <span class="string">"transform-runtime"</span></span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
 <p>06和07主要提供的是，如果在使用es6或者es7的情况下，解决各个浏览器的兼容问题，其实，目前有很多方案，我这份方案其实是比较零碎的，但是，这更加有利于初学者对于es6、7转换的了解</p>
@@ -162,7 +167,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#WebPack">
+  <a href="/tags#WebPack" >
     <span class="tag-code">WebPack</span>
   </a>
 
@@ -329,7 +334,7 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Blogs by Setcina
   </p>
