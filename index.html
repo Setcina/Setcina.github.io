@@ -129,6 +129,73 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2020/04/09/JS的内存管理/">JS的内存管理</a>
+      </h2>
+      <p class="article-date">April 9, 2020</p>
+      
+        
+  <a href="/tags#javascript" >
+    <span class="tag-code">javascript</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          简介像C语言这样的底层语言一般都有底层的内存管理接口，比如 malloc()和free()。相反，JavaScript是在创建变量（对象，字符串等）时自动进行了分配内存，并且在不使用它们时“自动”释放。 释放的过程称为垃圾回收。这个“自动”是混乱的根源，并让JavaScript（和其他高级语 ...
+        
+      </div>
+      <a class="more" href="/2020/04/09/JS的内存管理/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/04/09/关于JS的那些设计模式那些事儿/">关于JS的设计模式那些事儿</a>
+      </h2>
+      <p class="article-date">April 9, 2020</p>
+      
+        
+  <a href="/tags#javascript" >
+    <span class="tag-code">javascript</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          在程序设计中有很多实用的设计模式，而其中大部分语言的实现都是基于“类”。
+在JavaScript中并没有类这种概念，JS中的函数属于一等对象，在JS中定义一个对象非常简单（var obj = {}），而基于JS中闭包与弱类型等特性，在实现一些设计模式的方式上与众不同。
+本文基于《JavaSc ...
+        
+      </div>
+      <a class="more" href="/2020/04/09/关于JS的那些设计模式那些事儿/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/04/08/13-React中的this-setStates是同步还是异步的/">13-React中的this.setStates是同步还是异步的</a>
+      </h2>
+      <p class="article-date">April 8, 2020</p>
+      
+        
+  <a href="/tags#React.js" >
+    <span class="tag-code">React.js</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          执行setState()的位置?
+在react控制的回调函数中: 生命周期勾子 / react事件监听回调
+非react控制的异步回调函数中: 定时器回调 / 原生DOM事件监听回调 / promise回调 /…
+
+异步 OR 同步?
+react相关回调中（生命周期回调、事件监听回调）: 异 ...
+        
+      </div>
+      <a class="more" href="/2020/04/08/13-React中的this-setStates是同步还是异步的/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2020/04/06/React-Hooks中父组件调用子组件的方法/">02 React Hooks中父组件调用子组件的方法</a>
       </h2>
       <p class="article-date">April 6, 2020</p>
@@ -161,12 +228,12 @@
       
       <div class="article-summary">
         
-          一数据类型数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol)和引用数据类型。
+          一 数据类型数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol)和引用数据类型。
 
 基本数据类型的特点：直接存储在栈(stack)中的数据
 引用数据类型的特点：存储的是该对象在栈中引用，真实的数据存放在堆内存里
 
-引用数据类型在 ...
+引用数据类型 ...
         
       </div>
       <a class="more" href="/2020/04/05/浅拷贝和深拷贝的区别/">Read more</a>
@@ -287,63 +354,6 @@ IE
         
       </div>
       <a class="more" href="/2019/07/20/快速切换以及管理node包/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/07/04/antd的Form动态校验规则/">antd的Form动态校验规则</a>
-      </h2>
-      <p class="article-date">July 4, 2019</p>
-      
-        
-  <a href="/tags#Work Experience" >
-    <span class="tag-code">Work Experience</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          序言其实在Ant Design里面，表单的验证最主要是集中在动态校验规则中，但其实目前到手的工作项目中对于表单的实例少之又少。所以在这次的工作中，我也比较花时间的尝试了使用Form的动态校验规则。当然啦，尝试的话，就免不了有坑。顺手在这里总结一下
-getFieldDecorator在动态校验 ...
-        
-      </div>
-      <a class="more" href="/2019/07/04/antd的Form动态校验规则/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/06/25/宏任务以及微任务/">宏任务以及微任务</a>
-      </h2>
-      <p class="article-date">June 25, 2019</p>
-      
-        
-  <a href="/tags#javascript" >
-    <span class="tag-code">javascript</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          先以一道面试题做引子：
-123456789101112131415setTimeout(function()&#123;    console.log(1);&#125;,0);new Promise(function(a,b)&#123;    console.log(2);    for ...
-        
-      </div>
-      <a class="more" href="/2019/06/25/宏任务以及微任务/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/05/12/跨域/">跨域</a>
-      </h2>
-      <p class="article-date">May 12, 2019</p>
-      
-      <div class="article-summary">
-        
-          名词解析跨域浏览器的同源策略(Same-origin policy)导致了在不同域名，协议，端口下不可访问到文件，对象或数据，这个时候，跨域就出现了。跨域问题的来源是因为浏览器的同源策略的问题，并不是后台服务器不允许前端调用，它是浏览器最基本和最核心的安全机制。
-同源策略同源策略，它是由Ne ...
-        
-      </div>
-      <a class="more" href="/2019/05/12/跨域/">Read more</a>
     </article>
   
 
